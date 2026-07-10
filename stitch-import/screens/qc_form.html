@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>QC Form - SN-8812</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&amp;family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#faf9fc",
+                    "outline-variant": "#c3c6cf",
+                    "inverse-primary": "#abc9f3",
+                    "tertiary-fixed-dim": "#8bd7a7",
+                    "secondary-fixed": "#ffddba",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#003b21",
+                    "surface-container-high": "#e9e8eb",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#005230",
+                    "inverse-surface": "#2f3033",
+                    "tertiary-container": "#005431",
+                    "on-secondary-fixed-variant": "#673d00",
+                    "surface-container-highest": "#e3e2e5",
+                    "primary-container": "#2c4a6e",
+                    "surface-dim": "#dad9dd",
+                    "secondary": "#875200",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#a6f3c2",
+                    "primary": "#123356",
+                    "surface-tint": "#436085",
+                    "on-primary-container": "#9cbae4",
+                    "on-secondary-container": "#6f4300",
+                    "on-surface": "#1a1c1e",
+                    "on-primary-fixed-variant": "#2a486c",
+                    "surface-variant": "#e3e2e5",
+                    "outline": "#73777f",
+                    "secondary-container": "#fead48",
+                    "primary-fixed": "#d3e4ff",
+                    "on-secondary-fixed": "#2b1700",
+                    "surface-container": "#eeedf1",
+                    "on-tertiary-fixed": "#002110",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#faf9fc",
+                    "on-background": "#1a1c1e",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f4f3f6",
+                    "inverse-on-surface": "#f1f0f4",
+                    "secondary-fixed-dim": "#ffb866",
+                    "on-tertiary-container": "#7cc799",
+                    "on-primary-fixed": "#001c38",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#43474e",
+                    "primary-fixed-dim": "#abc9f3",
+                    "error-container": "#ffdad6",
+                    "background": "#faf9fc"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "12px",
+                    "unit": "4px",
+                    "container-padding": "16px",
+                    "row-height-dense": "32px",
+                    "row-height-standard": "40px"
+            },
+            "fontFamily": {
+                    "headline-lg": [
+                            "Archivo Narrow"
+                    ],
+                    "data-mono": [
+                            "IBM Plex Mono"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "headline-md": [
+                            "Archivo Narrow"
+                    ],
+                    "headline-sm": [
+                            "Archivo Narrow"
+                    ],
+                    "body-sm": [
+                            "Inter"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "label-caps": [
+                            "Archivo Narrow"
+                    ]
+            },
+            "fontSize": {
+                    "headline-lg": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "data-mono": [
+                            "13px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-sm": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "18px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "11px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        /* Custom toggle switch styles for touch targets */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #68D391; /* success color */
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #68D391;
+        }
+        .toggle-checkbox-fail:checked {
+            right: 0;
+            border-color: #FC8181; /* error color */
+        }
+        .toggle-checkbox-fail:checked + .toggle-label {
+            background-color: #FC8181;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden">
+<!-- Top Navigation (Suppressed for focused task, minimal header only) -->
+<header class="w-full h-16 flex items-center justify-between px-container-padding border-b border-outline-variant bg-surface dark:bg-surface border-t-4 border-primary">
+<div class="flex items-center gap-2">
+<button class="p-2 -ml-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</button>
+<span class="font-data-mono text-headline-sm font-bold text-primary dark:text-primary-fixed-dim">CORTEX_SYSTEM_OS</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Data Plate Header -->
+<div class="border-t-[4px] border-primary-container bg-surface flex flex-col md:flex-row justify-between p-container-padding border-b border-outline-variant gap-4">
+<div>
+<h1 class="font-data-mono text-headline-md font-bold text-on-surface">SN-8812</h1>
+<p class="font-body-sm text-on-surface-variant">Quality Control Inspection</p>
+</div>
+<div class="flex gap-6">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">QC Stage</span>
+<span class="font-body-md text-body-md text-on-surface">Final Pass</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Operator</span>
+<span class="font-body-md text-body-md text-on-surface">J. Smith</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Date</span>
+<span class="font-body-md text-body-md text-on-surface">Oct 24, 2023</span>
+</div>
+</div>
+</div>
+<!-- Main Content Area -->
+<main class="flex-grow p-container-padding pb-[100px] flex flex-col gap-unit">
+<!-- Checkpoint 1 -->
+<div class="bg-surface border border-outline-variant p-4 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">1. Structural Integrity</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Verify all welds and joints meet ISO-9001 specs.</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-3 border border-outline-variant bg-surface-container-low text-on-surface font-label-caps text-label-caps uppercase text-center active:bg-tertiary active:text-on-tertiary transition-colors">Pass</button>
+<button class="flex-1 py-3 border border-outline-variant bg-surface-container-low text-on-surface font-label-caps text-label-caps uppercase text-center active:bg-error active:text-on-error transition-colors">Fail</button>
+</div>
+<div class="flex flex-col gap-2">
+<input class="w-full bg-surface border border-outline-variant px-3 py-2 font-body-md text-body-md text-on-surface focus:border-primary-container focus:ring-0 placeholder:text-outline h-row-height-standard" placeholder="Add notes (optional)" type="text"/>
+<button class="flex items-center justify-center gap-2 py-2 border border-outline-variant text-on-surface-variant font-body-sm text-body-sm bg-surface hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">add_a_photo</span>
+                    Attach Photo
+                </button>
+</div>
+</div>
+<!-- Checkpoint 2 -->
+<div class="bg-surface border border-outline-variant p-4 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">2. Power Systems</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Check voltage output across all primary rails.</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-3 border border-outline-variant bg-surface-container-low text-on-surface font-label-caps text-label-caps uppercase text-center active:bg-tertiary active:text-on-tertiary transition-colors">Pass</button>
+<button class="flex-1 py-3 border border-outline-variant bg-surface-container-low text-on-surface font-label-caps text-label-caps uppercase text-center active:bg-error active:text-on-error transition-colors">Fail</button>
+</div>
+<div class="flex flex-col gap-2">
+<input class="w-full bg-surface border border-outline-variant px-3 py-2 font-body-md text-body-md text-on-surface focus:border-primary-container focus:ring-0 placeholder:text-outline h-row-height-standard" placeholder="Add notes (optional)" type="text"/>
+<button class="flex items-center justify-center gap-2 py-2 border border-outline-variant text-on-surface-variant font-body-sm text-body-sm bg-surface hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">add_a_photo</span>
+                    Attach Photo
+                </button>
+</div>
+</div>
+<!-- Checkpoint 3 -->
+<div class="bg-surface border border-outline-variant p-4 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">3. Calibration</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Confirm sensor zero-state variance is within &lt;0.05%.</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-3 border border-outline-variant bg-surface-container-low text-on-surface font-label-caps text-label-caps uppercase text-center active:bg-tertiary active:text-on-tertiary transition-colors">Pass</button>
+<button class="flex-1 py-3 border border-outline-variant bg-surface-container-low text-on-surface font-label-caps text-label-caps uppercase text-center active:bg-error active:text-on-error transition-colors">Fail</button>
+</div>
+<div class="flex flex-col gap-2">
+<input class="w-full bg-surface border border-outline-variant px-3 py-2 font-body-md text-body-md text-on-surface focus:border-primary-container focus:ring-0 placeholder:text-outline h-row-height-standard" placeholder="Add notes (optional)" type="text"/>
+<button class="flex items-center justify-center gap-2 py-2 border border-outline-variant text-on-surface-variant font-body-sm text-body-sm bg-surface hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">add_a_photo</span>
+                    Attach Photo
+                </button>
+</div>
+</div>
+</main>
+<!-- Fixed Bottom Banner (Status) -->
+<div class="fixed bottom-0 left-0 right-0 p-container-padding bg-surface border-t border-outline-variant z-50 flex items-center justify-between shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-secondary-container"></div>
+<span class="font-headline-sm text-headline-sm text-on-surface">Awaiting Result</span>
+</div>
+<button class="bg-primary-container text-on-primary-container font-label-caps text-label-caps px-6 py-3 uppercase tracking-wider hover:bg-primary transition-colors">
+            SUBMIT REPORT
+        </button>
+</div>
+</body></html>

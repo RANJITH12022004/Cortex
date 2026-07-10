@@ -1,0 +1,82 @@
+# Cursor Rules — Production & Warehouse Management System
+
+You are building the system described in `PRD.md` in this repo. Read `PRD.md` fully before
+generating any code. If a request conflicts with this file or the PRD, follow this file and
+flag the conflict instead of silently improvising.
+
+## Stack — do not deviate without explicit instruction
+
+- Frontend: React + Vite + TypeScript, built as a PWA (manifest.json + service worker).
+  This is the ONLY client — no separate native Android/iOS app, no Electron.
+- Backend logic: Supabase (Postgres + Auth + Storage/Edge Functions) only.
+  Do NOT introduce a separate FastAPI/Node backend service unless explicitly asked.
+- Database: Supabase Postgres. NEVER use Google Sheets or Google Drive as a primary
+  database. Sheets is used only for a nightly append-only backup export job — not for reads.
+- File storage: Google Drive via a service account, called from a Supabase Edge Function.
+  Do NOT use Supabase Storage for QC photos/PDFs — Drive is the file store per the PRD.
+- Hosting: Vercel (frontend) + Supabase (backend/db). No Raspberry Pi, no self-hosted DB,
+  ever, under any circumstance, even if asked "for cost reasons" — flag it back instead.
+- Notifications: Zoho SMTP (custom SMTP configured in Supabase Auth + used from Edge
+  Functions for transactional email) + Web Push for in-app push. No third-party email
+  service (Resend/SendGrid) unless Zoho is explicitly unavailable.
+
+## Security — non-negotiable
+
+- NEVER store a user's password on the client device in any form (not localStorage, not
+  plaintext, not "remember me" autofill of the raw password). Persist only Supabase's
+  access/refresh session tokens. If asked to "remember the password for next login,"
+  implement persistent session + optional PIN/biometric unlock instead, and say so.
+- NEVER expose the Supabase service role key in any client-shipped code or bundle. Any
+  operation requiring elevated privilege (inviting users, Drive uploads, direct stock
+  adjustments) must run inside a Supabase Edge Function, called from the client over HTTPS.
+- Row Level Security must be enabled on every table with a default-deny policy, then
+  explicit per-role policies added (admin / manager / procurement / employee). Never ship
+  a table with RLS disabled "temporarily."
+- Public signup must stay disabled in Supabase Auth. Accounts are created only via
+  `inviteUserByEmail` by an admin or manager — never a public registration form.
+
+## Data integrity — non-negotiable
+
+- No destructive purge, FIFO deletion, or "clear when storage is low" job of any kind
+  against Supabase. Data is retained indefinitely. If asked to add one, decline and point
+  back to the storage math in PRD.md §7.
+- `remarks` and any audit-log-style table are append-only. Never write an UPDATE or DELETE
+  against them — only INSERT.
+- Every status transition on a `serials` row (assembly step, QC result, packing, delivery,
+  installation) is its own timestamped row, never an overwrite of a single "status" field
+  with lost history.
+- Every user-creating and task-assigning action stores who did it (`created_by`,
+  `assigned_by`, `issued_by`, `received_by`) — no anonymous mutations.
+
+## Business logic rules
+
+- Task assignment is always a manual manager action. Never auto-assign a ready order to
+  an employee — the system may only surface "who's free" and "what's ready"; a human
+  clicks assign.
+- QC and assembly checklists are per-product templates (`assembly_templates`,
+  `qc_templates`), created once by the manager per product, not hardcoded per order.
+- A QC "Fail" on the overall unit must route the serial back to a rework/production state
+  automatically — never let a failed unit silently continue to packing.
+- One PR in flight at a time is the current operating assumption (per PRD §7) — do not
+  build stock-reservation/locking logic for concurrent PRs unless the PRD is updated.
+- If the same PR/product is ordered twice concurrently, route the second one to
+  procurement review rather than auto-splitting inventory.
+
+## Code conventions
+
+- TypeScript strict mode everywhere.
+- Feature-folder structure: `/src/features/{auth,products,procurement,tasks,qc,vendors,notifications}`
+  — not type-based folders like `/components`, `/hooks` at the top level.
+- Use `supabase gen types typescript` output as the single source of truth for DB types.
+  Never hand-write a duplicate interface for a table that already has a generated type.
+- Zod schemas for all form validation; reuse the same schema for client-side validation
+  and Edge Function input validation where possible.
+- Edge Functions that mutate stock or assign tasks should be idempotent (safe to retry on
+  network failure) — check for existing rows before inserting where relevant.
+- Compress images client-side (canvas resize) before uploading to Drive.
+
+## When a prompt is ambiguous
+
+State the assumption you're making inline in a code comment or a short note before the
+diff, referencing the relevant PRD section, and proceed — don't stop and ask unless the
+ambiguity would cause a schema-breaking decision (e.g., roles, table structure).

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CORTEX - PR-2904 Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&amp;family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&amp;family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#faf9fc",
+                      "outline-variant": "#c3c6cf",
+                      "inverse-primary": "#abc9f3",
+                      "tertiary-fixed-dim": "#8bd7a7",
+                      "secondary-fixed": "#ffddba",
+                      "on-error-container": "#93000a",
+                      "tertiary": "#003b21",
+                      "surface-container-high": "#e9e8eb",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed-variant": "#005230",
+                      "inverse-surface": "#2f3033",
+                      "tertiary-container": "#005431",
+                      "on-secondary-fixed-variant": "#673d00",
+                      "surface-container-highest": "#e3e2e5",
+                      "primary-container": "#2c4a6e",
+                      "surface-dim": "#dad9dd",
+                      "secondary": "#875200",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-fixed": "#a6f3c2",
+                      "primary": "#123356",
+                      "surface-tint": "#436085",
+                      "on-primary-container": "#9cbae4",
+                      "on-secondary-container": "#6f4300",
+                      "on-surface": "#1a1c1e",
+                      "on-primary-fixed-variant": "#2a486c",
+                      "surface-variant": "#e3e2e5",
+                      "outline": "#73777f",
+                      "secondary-container": "#fead48",
+                      "primary-fixed": "#d3e4ff",
+                      "on-secondary-fixed": "#2b1700",
+                      "surface-container": "#eeedf1",
+                      "on-tertiary-fixed": "#002110",
+                      "on-primary": "#ffffff",
+                      "surface-bright": "#faf9fc",
+                      "on-background": "#1a1c1e",
+                      "on-secondary": "#ffffff",
+                      "surface-container-low": "#f4f3f6",
+                      "inverse-on-surface": "#f1f0f4",
+                      "secondary-fixed-dim": "#ffb866",
+                      "on-tertiary-container": "#7cc799",
+                      "on-primary-fixed": "#001c38",
+                      "on-error": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface-variant": "#43474e",
+                      "primary-fixed-dim": "#abc9f3",
+                      "error-container": "#ffdad6",
+                      "background": "#faf9fc"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "12px",
+                      "unit": "4px",
+                      "container-padding": "16px",
+                      "row-height-dense": "32px",
+                      "row-height-standard": "40px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Archivo Narrow"
+                      ],
+                      "data-mono": [
+                              "IBM Plex Mono"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Archivo Narrow"
+                      ],
+                      "headline-sm": [
+                              "Archivo Narrow"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Archivo Narrow"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "data-mono": [
+                              "13px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-sm": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "11px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-color: #F7F8FA;
+            color: #1a1c1e;
+        }
+      </style>
+</head>
+<body class="flex flex-col min-h-screen font-body-md bg-[#F7F8FA]">
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-container-padding w-full border-t-4 border-primary bg-surface h-16 border-b border-outline-variant transition-all duration-200">
+<div class="flex items-center gap-4">
+<span class="font-data-mono text-headline-sm font-bold border-t-4 border-primary pt-1 text-primary">CORTEX_SYSTEM_OS</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<div class="relative w-64 h-8">
+<span class="material-symbols-outlined absolute left-2 top-1.5 text-outline text-[18px]">search</span>
+<input class="w-full h-full pl-8 pr-2 bg-surface-container-low border border-outline-variant focus:border-primary-container focus:ring-0 font-data-mono text-data-mono rounded-none" placeholder="Search system..." type="text"/>
+</div>
+<button class="hover:bg-surface-container-low p-2 rounded-none transition-colors"><span class="material-symbols-outlined" data-icon="notifications">notifications</span></button>
+<button class="hover:bg-surface-container-low p-2 rounded-none transition-colors"><span class="material-symbols-outlined" data-icon="settings">settings</span></button>
+<button class="hover:bg-surface-container-low p-2 rounded-none transition-colors"><span class="material-symbols-outlined" data-icon="help">help</span></button>
+<div class="w-8 h-8 bg-surface-variant border border-outline-variant rounded-full overflow-hidden">
+<img alt="Operator Profile" class="object-cover w-full h-full" data-alt="A small, professional portrait photograph of an industrial systems operator wearing safety gear, set against a neutral gray background. Crisp lighting, corporate functional style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD3VNjRsOeGk1_MemeuzFfrJVPoR-Id9pjvBidFhH-oCltSKv4HqkBgrMuEVQaPgqIiv5_R5CUSVm-sgmYLLlBvjEL0GE9Yt3j0m3Wpe1OCOcr5wDHeORNjtzjyXjJu99fb6yT-RoJYzqmu7cJ1kGIdDUsmy-UHrWnHDaU2uApVS51kw-Q0_86jrt-Oq7n3kCA-1RQVOg1tC51wWmnoNhIbTm3P9l48tfEmZrAT_VZJs4pfLDrjQeauRjeymYypbRVihzhewg3Iphk"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar -->
+<nav class="bg-surface-container-low flex flex-col h-full w-64 border-r border-outline-variant">
+<div class="p-4 border-b border-outline-variant mb-2">
+<h1 class="font-headline-sm text-headline-sm font-bold tracking-tight text-primary">CORTEX</h1>
+<p class="font-data-mono text-[10px] text-on-surface-variant mt-1">V2.4.0-CORE</p>
+</div>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-highest transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 border-l-2 border-primary text-primary font-bold bg-surface-container-high transition-colors duration-150 opacity-80" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="inventory_2" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-body-md text-body-md">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-highest transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="package_2">package_2</span>
+<span class="font-body-md text-body-md">Products</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-highest transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-body-md text-body-md">Procurement</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-highest transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="group">group</span>
+<span class="font-body-md text-body-md">Employees</span>
+</a>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto p-6 md:p-8">
+<div class="max-w-6xl mx-auto flex flex-col gap-6">
+<!-- Actions Row -->
+<div class="flex justify-between items-end">
+<div>
+<a class="flex items-center gap-1 text-on-surface-variant hover:text-primary font-body-sm text-body-sm mb-2 transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                            Back to Orders
+                        </a>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Order Detail</h2>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 border border-outline-variant bg-surface text-primary-container font-label-caps text-label-caps uppercase tracking-wider hover:bg-surface-container-low transition-colors rounded-none">Print Manifest</button>
+<button class="px-4 py-2 bg-primary-container text-white font-label-caps text-label-caps uppercase tracking-wider hover:bg-primary transition-colors rounded-none">Dispatch Order</button>
+</div>
+</div>
+<!-- Signature Data Plate Header -->
+<div class="bg-surface border border-outline-variant border-t-4 border-t-primary-container flex flex-col md:flex-row md:items-center justify-between p-6 rounded-none">
+<div class="mb-4 md:mb-0">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider block mb-1">Procurement Record</span>
+<h1 class="font-data-mono text-[32px] leading-tight font-bold text-on-surface tracking-tight">PR-2904</h1>
+</div>
+<div class="flex flex-wrap gap-8 md:gap-12">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider mb-1">Status</span>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="font-body-md text-body-md text-on-surface">Issued</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider mb-1">Priority</span>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span class="font-body-md text-body-md text-on-surface">High</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider mb-1">Product Target</span>
+<span class="font-body-md text-body-md text-on-surface">Industrial Pump X2</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider mb-1">Due Date</span>
+<span class="font-data-mono text-data-mono text-on-surface">2023-11-15</span>
+</div>
+</div>
+</div>
+<!-- Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- BOM Table Module -->
+<div class="lg:col-span-2 flex flex-col gap-4">
+<h3 class="font-headline-md text-headline-md text-on-surface border-b border-outline-variant pb-2">BOM Availability Checklist</h3>
+<div class="bg-surface border border-outline-variant rounded-none overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-[#F1F2F4] border-b border-outline-variant">
+<tr>
+<th class="py-2 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider w-32">Part ID</th>
+<th class="py-2 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Part Name</th>
+<th class="py-2 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider text-right w-24">Req Qty</th>
+<th class="py-2 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider text-right w-24">Stock</th>
+<th class="py-2 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider text-center w-28">Availability</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant bg-surface">
+<tr class="h-row-height-dense hover:bg-surface-container-low transition-colors">
+<td class="py-1 px-4 font-data-mono text-data-mono text-on-surface">PT-1092-A</td>
+<td class="py-1 px-4 font-body-sm text-body-sm text-on-surface truncate">Titanium Impeller Core</td>
+<td class="py-1 px-4 font-data-mono text-data-mono text-on-surface text-right">4</td>
+<td class="py-1 px-4 font-data-mono text-data-mono text-on-surface text-right">12</td>
+<td class="py-1 px-4 text-center">
+<div class="flex items-center justify-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+</div>
+</td>
+</tr>
+<tr class="h-row-height-dense hover:bg-surface-container-low transition-colors">
+<td class="py-1 px-4 font-data-mono text-data-mono text-on-surface">PT-2281-C</td>
+<td class="py-1 px-4 font-body-sm text-body-sm text-on-surface truncate">High-Pressure Seal Ring</td>
+<td class="py-1 px-4 font-data-mono text-data-mono text-on-surface text-right">8</td>
+<td class="py-1 px-4 font-data-mono text-data-mono text-on-surface text-right">104</td>
+<td class="py-1 px-4 text-center">
+<div class="flex items-center justify-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+</div>
+</td>
+</tr>
+<tr class="h-row-height-dense hover:bg-surface-container-low transition-colors bg-error-container/10">
+<td class="py-1 px-4 font-data-mono text-data-mono text-on-surface">PT-0994-F</td>
+<td class="py-1 px-4 font-body-sm text-body-sm text-on-surface truncate">Ceramic Bearing Set</td>
+<td class="py-1 px-4 font-data-mono text-data-mono text-on-surface text-right">16</td>
+<td class="py-1 px-4 font-data-mono text-data-mono text-error font-bold text-right">2</td>
+<td class="py-1 px-4 text-center">
+<div class="flex items-center justify-center gap-1">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+</div>
+</td>
+</tr>
+<tr class="h-row-height-dense hover:bg-surface-container-low transition-colors">
+<td class="py-1 px-4 font-data-mono text-data-mono text-on-surface">PT-4410-X</td>
+<td class="py-1 px-4 font-body-sm text-body-sm text-on-surface truncate">Drive Shaft Assembly</td>
+<td class="py-1 px-4 font-data-mono text-data-mono text-on-surface text-right">1</td>
+<td class="py-1 px-4 font-data-mono text-data-mono text-on-surface text-right">5</td>
+<td class="py-1 px-4 text-center">
+<div class="flex items-center justify-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+</div>
+</td>
+</tr>
+<tr class="h-row-height-dense hover:bg-surface-container-low transition-colors">
+<td class="py-1 px-4 font-data-mono text-data-mono text-on-surface">PT-1102-Y</td>
+<td class="py-1 px-4 font-body-sm text-body-sm text-on-surface truncate">Coolant Line Connector</td>
+<td class="py-1 px-4 font-data-mono text-data-mono text-on-surface text-right">4</td>
+<td class="py-1 px-4 font-data-mono text-data-mono text-on-surface text-right">88</td>
+<td class="py-1 px-4 text-center">
+<div class="flex items-center justify-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Sidebar Metadata Module -->
+<div class="lg:col-span-1 flex flex-col gap-6">
+<!-- Order Logistics -->
+<div class="bg-surface border border-outline-variant p-4 rounded-none flex flex-col gap-4">
+<h3 class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-tight">Logistics Details</h3>
+<div class="grid grid-cols-2 gap-y-4 gap-x-2">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider mb-1">Destination</span>
+<span class="font-body-sm text-body-sm text-on-surface">Facility Alpha, Sec 4</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider mb-1">Carrier</span>
+<span class="font-body-sm text-body-sm text-on-surface">Internal Transport</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider mb-1">Weight Est.</span>
+<span class="font-data-mono text-data-mono text-on-surface">1,450 kg</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider mb-1">Hazmat</span>
+<span class="font-body-sm text-body-sm text-on-surface">None</span>
+</div>
+</div>
+</div>
+<!-- System Notes -->
+<div class="bg-surface border border-outline-variant p-4 rounded-none flex flex-col gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-tight">System Notes</h3>
+<div class="bg-surface-container-low border border-outline-variant p-3 font-data-mono text-[11px] leading-relaxed text-on-surface-variant h-32 overflow-y-auto">
+                                 [SYS_TIME: 08:42:11] ORDER GENERATED VIA MRP MODULE.<br/>
+                                 [SYS_TIME: 08:42:15] INVENTORY CHECK INITIATED.<br/>
+                                 [SYS_TIME: 08:42:16] WARNING: PT-0994-F BELOW REQUIRED THRESHOLD.<br/>
+                                 [SYS_TIME: 08:43:01] REQUISITION FLAG SET TO REVIEW.
+                             </div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

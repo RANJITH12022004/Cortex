@@ -1,0 +1,13 @@
+[
+  { "screenId": "41cfcf2b9a1b4f628fa4d79aed034a5e", "route": "/login" },
+  { "screenId": "9482609546f04a6c93acd9ba36dfecfc", "route": "/dashboard" },
+  { "screenId": "e9700e8d2f00427fa1c1f153136a79ba", "route": "/command-center" },
+  { "screenId": "bed0a7e732dc44ebbf14a594ac32690b", "route": "/products/setup" },
+  { "screenId": "c62cb5c7a99048c08fc5019aebd9c7d5", "route": "/procurement/stock-out" },
+  { "screenId": "e6a9abcd9c2c4ef08b9712e082e895eb", "route": "/orders/detail" },
+  { "screenId": "7f9bc143be9f4e41ac33fe96c393f12b", "route": "/orders" },
+  { "screenId": "c75f060908a24e8ab7a33a0e2132d810", "route": "/tasks/production" },
+  { "screenId": "c97f024b994e41439e7dc28c1f457f63", "route": "/tasks" },
+  { "screenId": "9a18dcfa278644abbddc26f8b4bd0c75", "route": "/qc/inspection" },
+  { "screenId": "747b4fff3f284c2ebf49b5a437a6c211", "route": "/qc/form" }
+]

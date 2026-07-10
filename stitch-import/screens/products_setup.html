@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Product Setup - Cortex</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#faf9fc",
+                      "outline-variant": "#c3c6cf",
+                      "inverse-primary": "#abc9f3",
+                      "tertiary-fixed-dim": "#8bd7a7",
+                      "secondary-fixed": "#ffddba",
+                      "on-error-container": "#93000a",
+                      "tertiary": "#003b21",
+                      "surface-container-high": "#e9e8eb",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed-variant": "#005230",
+                      "inverse-surface": "#2f3033",
+                      "tertiary-container": "#005431",
+                      "on-secondary-fixed-variant": "#673d00",
+                      "surface-container-highest": "#e3e2e5",
+                      "primary-container": "#2c4a6e",
+                      "surface-dim": "#dad9dd",
+                      "secondary": "#875200",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-fixed": "#a6f3c2",
+                      "primary": "#123356",
+                      "surface-tint": "#436085",
+                      "on-primary-container": "#9cbae4",
+                      "on-secondary-container": "#6f4300",
+                      "on-surface": "#1a1c1e",
+                      "on-primary-fixed-variant": "#2a486c",
+                      "surface-variant": "#e3e2e5",
+                      "outline": "#73777f",
+                      "secondary-container": "#fead48",
+                      "primary-fixed": "#d3e4ff",
+                      "on-secondary-fixed": "#2b1700",
+                      "surface-container": "#eeedf1",
+                      "on-tertiary-fixed": "#002110",
+                      "on-primary": "#ffffff",
+                      "surface-bright": "#faf9fc",
+                      "on-background": "#1a1c1e",
+                      "on-secondary": "#ffffff",
+                      "surface-container-low": "#f4f3f6",
+                      "inverse-on-surface": "#f1f0f4",
+                      "secondary-fixed-dim": "#ffb866",
+                      "on-tertiary-container": "#7cc799",
+                      "on-primary-fixed": "#001c38",
+                      "on-error": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface-variant": "#43474e",
+                      "primary-fixed-dim": "#abc9f3",
+                      "error-container": "#ffdad6",
+                      "background": "#faf9fc"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "12px",
+                      "unit": "4px",
+                      "container-padding": "16px",
+                      "row-height-dense": "32px",
+                      "row-height-standard": "40px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Archivo Narrow"
+                      ],
+                      "data-mono": [
+                              "IBM Plex Mono"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Archivo Narrow"
+                      ],
+                      "headline-sm": [
+                              "Archivo Narrow"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Archivo Narrow"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "data-mono": [
+                              "13px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-sm": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "11px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body { background-color: #faf9fc; color: #1a1c1e; margin: 0; padding: 0; display: flex; height: 100vh; overflow: hidden; }
+        .data-plate { border-top: 4px solid #2C4A6E; }
+        .tab-active { border-bottom: 2px solid #123356; color: #123356; font-weight: 600; }
+        .tab-inactive { color: #43474e; border-bottom: 2px solid transparent; }
+        .tab-inactive:hover { background-color: #f4f3f6; }
+        .input-base { width: 100%; border: 1px solid #c3c6cf; background-color: #ffffff; outline: none; padding: 0 8px; height: 100%; font-family: inherit; font-size: inherit; }
+        .input-base:focus { border-color: #2C4A6E; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border-bottom: 1px solid #e3e2e5; text-align: left; padding: 0 12px; height: 32px; }
+        th { background-color: #f1f0f4; font-family: "Archivo Narrow"; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #43474e; }
+        td { background-color: #ffffff; }
+        .btn-primary { background-color: #2C4A6E; color: #ffffff; padding: 0 16px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-family: "Archivo Narrow"; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; cursor: pointer; border: none; }
+        .btn-primary:hover { background-color: #123356; }
+        .btn-secondary { background-color: transparent; border: 1px solid #2C4A6E; color: #2C4A6E; padding: 0 16px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-family: "Archivo Narrow"; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; cursor: pointer; }
+        .btn-secondary:hover { background-color: #f4f3f6; }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- SideNavBar -->
+<aside class="bg-surface-container-low dark:bg-surface-container-low text-primary dark:text-primary-fixed-dim font-body-md text-body-md h-screen w-64 border-r border-outline-variant flex flex-col hidden md:flex shrink-0">
+<div class="px-4 py-4 border-b border-outline-variant">
+<h1 class="font-headline-sm text-headline-sm font-bold tracking-tight text-primary dark:text-primary-fixed-dim">CORTEX</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant">V2.4.0-CORE</p>
+</div>
+<nav class="flex-1 py-2 overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-highest transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-highest transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Orders
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 border-l-2 border-primary text-primary font-bold bg-surface-container-high hover:bg-surface-container-highest transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">package_2</span>
+                Products
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-highest transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+                Procurement
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-highest transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">group</span>
+                Employees
+            </a>
+</nav>
+</aside>
+<div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface text-primary dark:text-primary-fixed-dim font-data-mono text-data-mono w-full h-16 flex items-center justify-between px-container-padding w-full border-t-4 border-primary border-b border-outline-variant shrink-0">
+<div class="flex items-center gap-4">
+<span class="font-data-mono text-headline-sm font-bold pt-1">CORTEX_SYSTEM_OS</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-outline text-[16px]">search</span>
+<input class="h-8 pl-8 pr-3 border border-outline-variant bg-surface-container-lowest text-on-surface font-body-sm text-body-sm focus:border-primary focus:outline-none w-48" placeholder="Search..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:text-primary p-1 rounded hover:bg-surface-container-low transition-all duration-200"><span class="material-symbols-outlined">notifications</span></button>
+<button class="text-on-surface-variant hover:text-primary p-1 rounded hover:bg-surface-container-low transition-all duration-200"><span class="material-symbols-outlined">settings</span></button>
+<button class="text-on-surface-variant hover:text-primary p-1 rounded hover:bg-surface-container-low transition-all duration-200"><span class="material-symbols-outlined">help</span></button>
+<div class="w-8 h-8 rounded-full bg-surface-variant border border-outline-variant overflow-hidden">
+<img alt="Operator Profile" class="w-full h-full object-cover" data-alt="A macro shot of a metallic, industrial textured surface with subtle directional lighting creating a high-tech light-mode material feel. Colors are neutral grays and whites. Mood is precise and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEie4N7dT4Y4YiberPXXj9WGbIXZrroyWvJ3hsyt407xyStf8f5Ym_wETUNeAvFy-AOCb_nnL6C5E3OVPCugev76S-UFuO-1_OZfZSSTE7LyUGK0XpfCC_LO1we7NssPT1rjpsV7y63hkR3Rqts8KgmFyc3OOdkvmFusthwXUf69xDFmHslOZvYW-cYyFLhWI_bcBqFKHMoczwGG1PzlZYlxQgjQ9GC2HEcnwY7_bRPa0BmcQfzZD2pCN4TdmhDB3Cypsh2UP-SXUw"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto bg-surface-container-low p-container-padding md:p-6 lg:p-8">
+<div class="max-w-7xl mx-auto flex flex-col gap-6">
+<!-- Data Plate Header -->
+<div class="bg-surface data-plate border border-outline-variant p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface m-0">Model-A Turbine</h2>
+<div class="font-data-mono text-data-mono text-on-surface-variant mt-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">memory</span>
+                            SKU: TRB-A-9901-X
+                        </div>
+</div>
+<div class="flex gap-6">
+<div class="flex flex-col items-end">
+<span class="font-label-caps text-label-caps text-outline">STATUS</span>
+<div class="flex items-center gap-2 mt-1">
+<div class="w-2 h-2 rounded-full bg-secondary-container"></div>
+<span class="font-body-md text-body-md text-on-surface">Draft</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-caps text-label-caps text-outline">REVISION</span>
+<span class="font-body-md text-body-md text-on-surface mt-1">v1.2</span>
+</div>
+</div>
+</div>
+<!-- Tabs -->
+<div class="flex border-b border-outline-variant">
+<button class="px-4 py-2 font-body-md text-body-md tab-active">BOM Builder</button>
+<button class="px-4 py-2 font-body-md text-body-md tab-inactive">Assembly Checklist</button>
+<button class="px-4 py-2 font-body-md text-body-md tab-inactive">QC Checklist</button>
+</div>
+<!-- Active Tab Content: BOM Builder -->
+<div class="bg-surface border border-outline-variant flex flex-col">
+<div class="p-2 border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<span class="font-label-caps text-label-caps text-on-surface-variant px-2">BILL OF MATERIALS - 14 ITEMS</span>
+<div class="flex gap-2">
+<button class="btn-secondary">IMPORT CSV</button>
+<button class="btn-primary" onclick="addTableRow()">ADD ROW</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table id="bom-table">
+<thead>
+<tr>
+<th style="width: 40px;"></th>
+<th style="width: 180px;">PART SKU</th>
+<th>DESCRIPTION</th>
+<th style="width: 100px;">QTY</th>
+<th style="width: 100px;">UNIT</th>
+<th style="width: 60px;"></th>
+</tr>
+</thead>
+<tbody>
+<!-- Row 1 -->
+<tr>
+<td class="text-center text-outline"><span class="material-symbols-outlined text-[16px] cursor-grab">drag_indicator</span></td>
+<td class="p-0"><input class="input-base font-data-mono text-data-mono text-primary" type="text" value="CAS-AL-001"/></td>
+<td class="p-0"><input class="input-base font-body-sm text-body-sm" type="text" value="Main Aluminum Casing"/></td>
+<td class="p-0"><input class="input-base font-data-mono text-data-mono text-right" type="number" value="1"/></td>
+<td class="p-0">
+<select class="input-base font-body-sm text-body-sm appearance-none rounded-none">
+<option selected="">EA</option>
+<option>KG</option>
+<option>M</option>
+</select>
+</td>
+<td class="text-center">
+<button class="text-outline hover:text-error transition-colors p-1"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr>
+<td class="text-center text-outline"><span class="material-symbols-outlined text-[16px] cursor-grab">drag_indicator</span></td>
+<td class="p-0"><input class="input-base font-data-mono text-data-mono text-primary" type="text" value="BLD-TI-042"/></td>
+<td class="p-0"><input class="input-base font-body-sm text-body-sm" type="text" value="Titanium Rotor Blade"/></td>
+<td class="p-0"><input class="input-base font-data-mono text-data-mono text-right" type="number" value="12"/></td>
+<td class="p-0">
+<select class="input-base font-body-sm text-body-sm appearance-none rounded-none">
+<option selected="">EA</option>
+<option>KG</option>
+<option>M</option>
+</select>
+</td>
+<td class="text-center">
+<button class="text-outline hover:text-error transition-colors p-1"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr>
+<td class="text-center text-outline"><span class="material-symbols-outlined text-[16px] cursor-grab">drag_indicator</span></td>
+<td class="p-0"><input class="input-base font-data-mono text-data-mono text-primary" type="text" value="BRG-CM-220"/></td>
+<td class="p-0"><input class="input-base font-body-sm text-body-sm" type="text" value="Ceramic Bearing Assembly"/></td>
+<td class="p-0"><input class="input-base font-data-mono text-data-mono text-right" type="number" value="4"/></td>
+<td class="p-0">
+<select class="input-base font-body-sm text-body-sm appearance-none rounded-none">
+<option selected="">EA</option>
+<option>KG</option>
+<option>M</option>
+</select>
+</td>
+<td class="text-center">
+<button class="text-outline hover:text-error transition-colors p-1"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr>
+<td class="text-center text-outline"><span class="material-symbols-outlined text-[16px] cursor-grab">drag_indicator</span></td>
+<td class="p-0"><input class="input-base font-data-mono text-data-mono text-primary" type="text" value="WRG-CU-010"/></td>
+<td class="p-0"><input class="input-base font-body-sm text-body-sm" type="text" value="Copper Wiring Harness, 10mm"/></td>
+<td class="p-0"><input class="input-base font-data-mono text-data-mono text-right" type="number" value="2.5"/></td>
+<td class="p-0">
+<select class="input-base font-body-sm text-body-sm appearance-none rounded-none">
+<option>EA</option>
+<option>KG</option>
+<option selected="">M</option>
+</select>
+</td>
+<td class="text-center">
+<button class="text-outline hover:text-error transition-colors p-1"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="flex justify-end gap-4 mt-4">
+<button class="btn-secondary">DISCARD DRAFT</button>
+<button class="btn-primary">SAVE CONFIGURATION</button>
+</div>
+</div>
+</main>
+</div>
+<script>
+        function addTableRow() {
+            const tbody = document.querySelector('#bom-table tbody');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td class="text-center text-outline"><span class="material-symbols-outlined text-[16px] cursor-grab">drag_indicator</span></td>
+                <td class="p-0"><input type="text" class="input-base font-data-mono text-data-mono text-primary" placeholder="SKU..."></td>
+                <td class="p-0"><input type="text" class="input-base font-body-sm text-body-sm" placeholder="Description..."></td>
+                <td class="p-0"><input type="number" class="input-base font-data-mono text-data-mono text-right" value="1"></td>
+                <td class="p-0">
+                    <select class="input-base font-body-sm text-body-sm appearance-none rounded-none">
+                        <option selected>EA</option>
+                        <option>KG</option>
+                        <option>M</option>
+                    </select>
+                </td>
+                <td class="text-center">
+                    <button class="text-outline hover:text-error transition-colors p-1" onclick="this.closest('tr').remove()"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+                </td>
+            `;
+            tbody.appendChild(newRow);
+            
+            // Focus the new SKU input
+            newRow.querySelector('input').focus();
+        }
+    </script>
+</body></html>

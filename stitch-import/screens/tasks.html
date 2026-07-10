@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CORTEX OS - Task View</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&amp;family=IBM+Plex+Mono:ital,wght@0,100..700;1,100..700&amp;family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface": "#faf9fc",
+                        "outline-variant": "#c3c6cf",
+                        "inverse-primary": "#abc9f3",
+                        "tertiary-fixed-dim": "#8bd7a7",
+                        "secondary-fixed": "#ffddba",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#003b21",
+                        "surface-container-high": "#e9e8eb",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#005230",
+                        "inverse-surface": "#2f3033",
+                        "tertiary-container": "#005431",
+                        "on-secondary-fixed-variant": "#673d00",
+                        "surface-container-highest": "#e3e2e5",
+                        "primary-container": "#2c4a6e",
+                        "surface-dim": "#dad9dd",
+                        "secondary": "#875200",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#a6f3c2",
+                        "primary": "#123356",
+                        "surface-tint": "#436085",
+                        "on-primary-container": "#9cbae4",
+                        "on-secondary-container": "#6f4300",
+                        "on-surface": "#1a1c1e",
+                        "on-primary-fixed-variant": "#2a486c",
+                        "surface-variant": "#e3e2e5",
+                        "outline": "#73777f",
+                        "secondary-container": "#fead48",
+                        "primary-fixed": "#d3e4ff",
+                        "on-secondary-fixed": "#2b1700",
+                        "surface-container": "#eeedf1",
+                        "on-tertiary-fixed": "#002110",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#faf9fc",
+                        "on-background": "#1a1c1e",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f4f3f6",
+                        "inverse-on-surface": "#f1f0f4",
+                        "secondary-fixed-dim": "#ffb866",
+                        "on-tertiary-container": "#7cc799",
+                        "on-primary-fixed": "#001c38",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#43474e",
+                        "primary-fixed-dim": "#abc9f3",
+                        "error-container": "#ffdad6",
+                        "background": "#faf9fc"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "gutter": "12px",
+                        "unit": "4px",
+                        "container-padding": "16px",
+                        "row-height-dense": "32px",
+                        "row-height-standard": "40px"
+                    },
+                    fontFamily: {
+                        "headline-lg": ["Archivo Narrow"],
+                        "data-mono": ["IBM Plex Mono"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Archivo Narrow"],
+                        "headline-sm": ["Archivo Narrow"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Archivo Narrow"]
+                    },
+                    fontSize: {
+                        "headline-lg": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "data-mono": ["13px", { lineHeight: "20px", fontWeight: "500" }],
+                        "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+                        "headline-sm": ["16px", { lineHeight: "24px", fontWeight: "600" }],
+                        "body-sm": ["12px", { lineHeight: "18px", fontWeight: "400" }],
+                        "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "label-caps": ["11px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Hide scrollbar for cleaner mobile view */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-low min-h-screen flex flex-col font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- SIGNATURE DATA PLATE HEADER -->
+<header class="bg-surface border-t-[4px] border-primary-container border-b border-outline-variant sticky top-0 z-50">
+<div class="px-container-padding py-3 flex flex-col gap-3">
+<!-- Top Row: Navigation & Serial ID -->
+<div class="flex items-center justify-between">
+<button class="flex items-center gap-1.5 text-on-surface-variant hover:text-on-surface transition-colors py-1 pl-0 pr-2 rounded-lg -ml-1">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest mt-0.5">Back</span>
+</button>
+<div class="font-data-mono text-headline-sm font-bold text-primary tracking-tight">SN-8812</div>
+</div>
+<!-- Metadata Grid -->
+<div class="grid grid-cols-2 gap-y-3 gap-x-4 pb-1">
+<div class="flex flex-col gap-0.5">
+<span class="font-label-caps text-label-caps text-outline uppercase">Task</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium truncate">Primary Assembly</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="font-label-caps text-label-caps text-outline uppercase">Deadline</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-error">schedule</span>
+<span class="font-data-mono text-data-mono text-on-surface font-semibold">14:00</span>
+</div>
+</div>
+<div class="flex flex-col gap-0.5 col-span-2 border-t border-outline-variant pt-2 mt-1">
+<span class="font-label-caps text-label-caps text-outline uppercase">Status</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="w-2 h-2 rounded-full bg-secondary-container inline-block shadow-[0_0_0_2px_rgba(254,173,72,0.2)]"></span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">In Progress (Step 2 of 4)</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- MAIN AREA: CHECKLIST -->
+<main class="flex-1 flex flex-col px-container-padding py-gutter gap-4 overflow-y-auto">
+<!-- Progress Bar Indicator -->
+<div class="w-full h-1 bg-surface-variant rounded-full overflow-hidden shrink-0">
+<div class="h-full bg-primary-container w-2/4 transition-all duration-500 ease-out" id="progress-bar"></div>
+</div>
+<div class="flex flex-col gap-3 pb-8">
+<!-- STEP 01: COMPLETED -->
+<div class="bg-surface border border-outline-variant rounded-lg p-3 flex flex-col gap-2 opacity-60 transition-opacity hover:opacity-100">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded bg-tertiary-container text-on-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px] font-bold" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="flex flex-col pt-0.5 flex-1">
+<div class="flex justify-between items-center w-full">
+<span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">Step 01</span>
+<span class="font-data-mono text-[10px] text-outline">08:14 AM</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface line-through mt-0.5">Chassis Alignment</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">Align primary chassis frame to jig Alpha-1. Ensure flush fit on all contact points.</p>
+</div>
+</div>
+</div>
+<!-- STEP 02: ACTIVE -->
+<div class="bg-surface border-2 border-primary-container rounded-lg p-4 flex flex-col gap-4 relative overflow-hidden shadow-sm" id="active-step">
+<!-- Highlight Indicator -->
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-primary-container"></div>
+<div class="flex items-start gap-3 pl-1">
+<div class="w-8 h-8 border-2 border-primary-container text-primary-container rounded flex items-center justify-center shrink-0 bg-primary-fixed">
+<span class="font-data-mono text-[12px] font-bold">02</span>
+</div>
+<div class="flex flex-col pt-0.5 w-full">
+<div class="flex justify-between items-center w-full">
+<span class="font-label-caps text-label-caps text-primary-container font-bold uppercase tracking-wider">Step 02 • Action Required</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface mt-0.5">Mount Wiring Harness</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1.5 leading-relaxed bg-surface-container-low p-2 rounded border border-outline-variant border-dashed">
+                            Route harness through designated channels A and B. Secure with provided clips (Part #CL-99). 
+                            <strong class="text-error font-medium block mt-1">⚠ Critical: Do not pinch wires near junction point.</strong>
+</p>
+</div>
+</div>
+<!-- Action Button (Large Touch Target) -->
+<button class="w-full bg-primary-container hover:bg-primary active:bg-inverse-surface text-on-primary font-label-caps text-[14px] tracking-widest uppercase font-bold py-4 px-4 rounded-lg flex items-center justify-center gap-2 transition-all mt-2 h-[56px]" onclick="completeStep()">
+<span class="material-symbols-outlined text-[24px]">task_alt</span>
+                    Mark Step Complete
+                </button>
+</div>
+<!-- STEP 03: PENDING -->
+<div class="bg-surface border border-outline-variant rounded-lg p-3 flex flex-col gap-2">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 border border-outline text-outline rounded flex items-center justify-center shrink-0 bg-surface">
+<span class="font-data-mono text-[12px] font-medium">03</span>
+</div>
+<div class="flex flex-col pt-0.5">
+<span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">Step 03</span>
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface mt-0.5">Install Control Module</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">Connect harness to module headers. Fasten with 4x M3 screws at 1.2Nm torque.</p>
+</div>
+</div>
+</div>
+<!-- STEP 04: PENDING -->
+<div class="bg-surface border border-outline-variant rounded-lg p-3 flex flex-col gap-2">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 border border-outline text-outline rounded flex items-center justify-center shrink-0 bg-surface">
+<span class="font-data-mono text-[12px] font-medium">04</span>
+</div>
+<div class="flex flex-col pt-0.5">
+<span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">Step 04</span>
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface mt-0.5">Final Calibration Check</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">Run diagnostic suite alpha. Verify all sensor inputs register within nominal ranges.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple interaction to simulate marking a step complete for UI demonstration
+        function completeStep() {
+            const stepCard = document.getElementById('active-step');
+            const btn = stepCard.querySelector('button');
+            const progressBar = document.getElementById('progress-bar');
+            
+            // Visual feedback
+            btn.innerHTML = '<span class="material-symbols-outlined text-[24px] animate-spin">sync</span> PROCESSING...';
+            btn.classList.add('opacity-80', 'cursor-wait');
+            
+            setTimeout(() => {
+                // Change card style to completed
+                stepCard.classList.remove('border-2', 'border-primary-container', 'shadow-sm');
+                stepCard.classList.add('border', 'border-outline-variant', 'opacity-60');
+                
+                // Remove active indicator
+                stepCard.querySelector('.absolute').remove();
+                
+                // Update icon
+                const iconContainer = stepCard.querySelector('.w-8.h-8');
+                iconContainer.className = 'w-8 h-8 rounded bg-tertiary-container text-on-tertiary flex items-center justify-center shrink-0';
+                iconContainer.innerHTML = '<span class="material-symbols-outlined text-[20px] font-bold" style="font-variation-settings: \'FILL\' 1;">check</span>';
+                
+                // Update text styles
+                stepCard.querySelector('h3').classList.add('line-through');
+                const label = stepCard.querySelector('span.text-primary-container');
+                label.className = 'font-label-caps text-label-caps text-outline uppercase tracking-wider';
+                label.innerText = 'Step 02';
+                
+                // Remove dashed box
+                const desc = stepCard.querySelector('p');
+                desc.className = 'font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed';
+                desc.innerHTML = 'Route harness through designated channels A and B. Secure with provided clips (Part #CL-99).';
+
+                // Remove button
+                btn.remove();
+
+                // Update progress
+                progressBar.style.width = '75%';
+            }, 800);
+        }
+    </script>
+</body></html>

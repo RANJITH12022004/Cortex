@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cortex OS - Quality Control Form</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Archivo+Narrow:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#99bbe3",
+                        "on-surface": "#dde3ea",
+                        "secondary-container": "#424a52",
+                        "on-tertiary-fixed-variant": "#26496b",
+                        "primary-fixed": "#d3e4ff",
+                        "primary": "#abc9f3",
+                        "tertiary": "#a8c9f2",
+                        "on-secondary-container": "#b1b9c3",
+                        "inverse-surface": "#dde3ea",
+                        "on-tertiary": "#093253",
+                        "error": "#ffb4ab",
+                        "background": "#0e1419",
+                        "tertiary-fixed-dim": "#a8c9f2",
+                        "on-primary": "#103254",
+                        "surface-bright": "#343a3f",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#001d35",
+                        "outline": "#8d9199",
+                        "primary-container": "#2c4a6e",
+                        "surface-container-high": "#242b30",
+                        "on-primary-fixed-variant": "#2a486c",
+                        "outline-variant": "#43474e",
+                        "surface": "#0e1419",
+                        "on-primary-fixed": "#001c38",
+                        "on-secondary-fixed-variant": "#404850",
+                        "secondary-fixed-dim": "#bfc7d1",
+                        "inverse-on-surface": "#2b3136",
+                        "on-secondary": "#293139",
+                        "tertiary-container": "#294b6d",
+                        "tertiary-fixed": "#d0e4ff",
+                        "surface-tint": "#abc9f3",
+                        "secondary": "#bfc7d1",
+                        "surface-container-low": "#161c21",
+                        "on-surface-variant": "#c3c6cf",
+                        "surface-container": "#1a2025",
+                        "on-background": "#dde3ea",
+                        "on-error": "#690005",
+                        "surface-dim": "#0e1419",
+                        "on-primary-container": "#9cbae4",
+                        "surface-container-highest": "#2f363b",
+                        "primary-fixed-dim": "#abc9f3",
+                        "on-secondary-fixed": "#141c23",
+                        "surface-variant": "#2f363b",
+                        "secondary-fixed": "#dbe3ed",
+                        "inverse-primary": "#436085",
+                        "surface-container-lowest": "#090f14",
+                        "on-error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "32px",
+                        "container-padding": "12px",
+                        "gutter": "1px",
+                        "margin-mobile": "16px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "data-lg": ["IBM Plex Mono"],
+                        "body-md": ["Archivo Narrow"],
+                        "headline-md": ["Archivo Narrow"],
+                        "data-md": ["IBM Plex Mono"],
+                        "label-sm": ["Archivo Narrow"],
+                        "display-lg": ["Archivo Narrow"]
+                    },
+                    "fontSize": {
+                        "data-lg": ["18px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "data-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "label-sm": ["11px", { "lineHeight": "1.4", "letterSpacing": "0.08em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        
+        /* Instrumentation Motifs */
+        .grid-pip {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: theme('colors.primary');
+            z-index: 10;
+        }
+        .pip-tl { top: -2px; left: -2px; }
+        .pip-tr { top: -2px; right: -2px; }
+        .pip-bl { bottom: -2px; left: -2px; }
+        .pip-br { bottom: -2px; right: -2px; }
+
+        .l-bracket-tl {
+            position: absolute; top: -1px; left: -1px; width: 8px; height: 8px;
+            border-top: 2px solid theme('colors.primary'); border-left: 2px solid theme('colors.primary');
+        }
+        .l-bracket-tr {
+            position: absolute; top: -1px; right: -1px; width: 8px; height: 8px;
+            border-top: 2px solid theme('colors.primary'); border-right: 2px solid theme('colors.primary');
+        }
+
+        .chamfer-btn {
+            clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+        }
+
+        /* Custom Scrollbar for data-heavy sections */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: theme('colors.surface-container'); }
+        ::-webkit-scrollbar-thumb { background: theme('colors.outline-variant'); border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: theme('colors.outline'); }
+
+        .heartbeat {
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased min-h-screen flex flex-col md:flex-row overflow-x-hidden font-body-md text-body-md">
+<!-- TopAppBar (Web) -->
+<header class="hidden md:flex justify-between items-center px-margin-desktop w-full h-16 border-b border-outline-variant bg-surface sticky top-0 z-40">
+<div class="flex items-center gap-6">
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tighter uppercase">Cortex</h1>
+<nav class="flex gap-4">
+<a class="text-on-surface-variant hover:text-primary transition-colors scale-98 duration-200" href="#">Systems</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors scale-98 duration-200" href="#">Nodes</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors scale-98 duration-200" href="#">Protocols</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span></button>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings_input_component</span></button>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span></button>
+</div>
+</header>
+<!-- SideNavBar (Web) -->
+<aside class="hidden md:flex flex-col h-screen w-64 border-r border-outline-variant bg-background sticky top-0 z-30">
+<div class="p-6 border-b border-outline-variant">
+<h2 class="font-display-lg text-display-lg tracking-tighter text-primary uppercase">CORTEX</h2>
+<p class="font-data-md text-data-md text-on-surface-variant mt-1">v4.2 // ONLINE</p>
+</div>
+<nav class="flex-1 py-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-high transition-colors duration-150 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-high transition-colors duration-150 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">analytics</span>
+                Analytics
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-high transition-colors duration-150 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">precision_manufacturing</span>
+                Assembly
+            </a>
+<a class="flex items-center gap-3 text-primary border-l-2 border-primary bg-primary-container/10 px-4 py-3 hover:bg-surface-container-high transition-colors duration-150 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fact_check</span>
+                Quality Control
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-4 py-3 hover:bg-surface-container-high transition-colors duration-150 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">terminal</span>
+                System Logs
+            </a>
+</nav>
+<div class="p-4 border-t border-outline-variant">
+<button class="w-full bg-primary text-on-primary font-label-sm text-label-sm py-2 px-4 rounded-[2px] chamfer-btn hover:bg-primary-fixed transition-colors uppercase font-bold tracking-wider mb-4">GENERATE REPORT</button>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-2 py-2 hover:bg-surface-container-high transition-colors duration-150 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-2 py-2 hover:bg-surface-container-high transition-colors duration-150 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">support_agent</span>
+<span class="font-label-sm text-label-sm">Support</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col h-[calc(100vh-64px)] md:h-screen overflow-y-auto bg-surface-container-low pb-24 md:pb-0 relative">
+<!-- Mobile Header (Suppressed on Web) -->
+<div class="md:hidden flex items-center justify-between p-4 border-b border-outline-variant bg-surface sticky top-0 z-40">
+<h1 class="font-headline-md text-headline-md uppercase tracking-tighter">QC // SN-8812</h1>
+<span class="material-symbols-outlined text-primary">barcode_scanner</span>
+</div>
+<div class="p-4 md:p-8 flex flex-col gap-6 max-w-4xl mx-auto w-full">
+<!-- Data-Plate Header -->
+<div class="relative border border-outline-variant bg-surface p-4 md:p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="l-bracket-tl"></div><div class="l-bracket-tr"></div>
+<div class="col-span-2 md:col-span-4 flex justify-between items-start border-b border-outline-variant pb-4 mb-2">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Active Batch</p>
+<h2 class="font-data-lg text-data-lg text-primary mt-1">SN-8812 // OMEGA-7</h2>
+</div>
+<div class="flex items-center gap-2 bg-surface-container px-3 py-1 border border-outline-variant">
+<div class="w-2 h-2 bg-primary heartbeat rounded-full"></div>
+<span class="font-data-md text-data-md text-on-surface">IN-PROGRESS</span>
+</div>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">OPERATOR</p>
+<p class="font-data-md text-data-md text-on-surface mt-1">OP-294</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">STATION</p>
+<p class="font-data-md text-data-md text-on-surface mt-1">TEST-BAY-4</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">START TIME</p>
+<p class="font-data-md text-data-md text-on-surface mt-1">08:42:11 Z</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">PROTOCOL</p>
+<p class="font-data-md text-data-md text-on-surface mt-1">QC-STD-99A</p>
+</div>
+</div>
+<!-- Checkpoints (Bento-style grid) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-outline-variant border border-outline-variant relative">
+<div class="grid-pip pip-tl"></div><div class="grid-pip pip-tr"></div><div class="grid-pip pip-bl"></div><div class="grid-pip pip-br"></div>
+<!-- Checkpoint 1 -->
+<div class="bg-surface p-5 flex flex-col justify-between hover:bg-surface-container-high transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="font-data-md text-data-md text-on-surface-variant block mb-1">CHK-01</span>
+<h3 class="font-body-md text-body-md text-on-surface font-semibold">Chassis Integrity</h3>
+<p class="font-body-md text-[12px] text-on-surface-variant mt-1 leading-snug">Verify torque on all exterior retaining bolts &gt; 45Nm.</p>
+</div>
+<span class="material-symbols-outlined text-outline">build</span>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-container border border-outline-variant py-2 text-center font-label-sm text-label-sm text-on-surface hover:border-primary hover:text-primary transition-all rounded-[2px]">PASS</button>
+<button class="flex-1 bg-surface-container border border-outline-variant py-2 text-center font-label-sm text-label-sm text-on-surface hover:border-error hover:text-error transition-all rounded-[2px]">FAIL</button>
+</div>
+</div>
+<!-- Checkpoint 2 -->
+<div class="bg-surface p-5 flex flex-col justify-between hover:bg-surface-container-high transition-colors border-l-2 border-primary bg-primary-container/5">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="font-data-md text-data-md text-primary block mb-1">CHK-02 // ACTIVE</span>
+<h3 class="font-body-md text-body-md text-on-surface font-semibold">Thermal Sensors</h3>
+<p class="font-body-md text-[12px] text-on-surface-variant mt-1 leading-snug">Calibrate readouts against baseline delta.</p>
+</div>
+<span class="material-symbols-outlined text-primary">device_thermostat</span>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-on-primary border border-primary py-2 text-center font-label-sm text-label-sm rounded-[2px] font-bold">PASS</button>
+<button class="flex-1 bg-surface-container border border-outline-variant py-2 text-center font-label-sm text-label-sm text-on-surface hover:border-error hover:text-error transition-all rounded-[2px]">FAIL</button>
+</div>
+</div>
+<!-- Photo Attachment UI -->
+<div class="bg-surface p-5 col-span-1 md:col-span-2 flex flex-col gap-4">
+<div class="flex justify-between items-center border-b border-outline-variant pb-2">
+<h3 class="font-data-md text-data-md text-on-surface">Visual Evidence (Req. for Failure)</h3>
+<button class="text-primary hover:text-primary-fixed flex items-center gap-1 font-label-sm text-label-sm uppercase">
+<span class="material-symbols-outlined text-[16px]">add_a_photo</span> Capture
+                        </button>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-2">
+<!-- Empty State / Add -->
+<div class="min-w-[120px] h-[120px] border border-dashed border-outline-variant bg-surface-container-low flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined mb-1">add</span>
+<span class="font-label-sm text-label-sm">ATTACH</span>
+</div>
+<!-- Mock Photo -->
+<div class="min-w-[120px] h-[120px] border border-outline-variant relative group overflow-hidden">
+<div class="w-full h-full bg-cover bg-center" data-alt="A macro photograph of a brushed steel industrial component with a visible hairline scratch, harsh factory lighting, clinical blue-tinted shadows, high contrast, gritty technical aesthetic, shallow depth of field." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA5VFM679hLnQjuHN-Pqx1l1Y7ehXQ-U2GbQiKXrR3Mlqs_tdKBWtLRer7yATSLLotQzNKbUNpMxorPj2FyxqEg0BdZb9eeNAhzpcaWx3DDRYAuY8UBGtD3KB83mLzzWztD49QnBLBVkzfLqE-eNDJKuTjEmUMhsXOo8WoKi9n7JAzmoD2f6xalkT4lhXM2k7iICEOWnDxThnY-1FlPwBg8FHGvJheQh2o2FiFuTlNqZzQFfwImzcWTHu4Xs0LAvFglhi5nCSyJrR7g')"></div>
+<div class="absolute inset-0 bg-surface/80 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+<span class="material-symbols-outlined text-error cursor-pointer">delete</span>
+</div>
+<div class="absolute bottom-0 left-0 w-full bg-surface-container-highest/90 text-[10px] font-data-md text-on-surface p-1 text-center truncate">IMG_9912.raw</div>
+</div>
+</div>
+</div>
+<!-- Remarks Input -->
+<div class="bg-surface p-5 col-span-1 md:col-span-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant block mb-2 uppercase">Operator Remarks</label>
+<textarea class="w-full bg-surface-container-low border-b border-outline-variant border-t-0 border-l-0 border-r-0 focus:ring-0 focus:border-b-2 focus:border-primary text-on-surface font-data-md p-2 placeholder-outline transition-all" placeholder="&gt; Enter log entry..." rows="2"></textarea>
+</div>
+</div>
+</div>
+<!-- Critical System Status Banner (Sticky Bottom on Desktop, Above Nav on Mobile) -->
+<div class="sticky bottom-0 md:bottom-0 w-full bg-surface-container-highest border-t border-outline-variant p-4 flex flex-col md:flex-row justify-between items-center gap-4 z-40">
+<div class="flex items-center gap-3 w-full md:w-auto">
+<span class="material-symbols-outlined text-outline">warning</span>
+<div class="flex-1">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Local Status</p>
+<p class="font-data-md text-data-md text-on-surface truncate">Uplink Stable. 2/14 Checks Complete.</p>
+</div>
+</div>
+<button class="w-full md:w-auto bg-primary-container text-on-primary-container border border-primary-container hover:bg-primary hover:text-on-primary py-3 px-8 font-label-sm text-label-sm rounded-[2px] chamfer-btn transition-colors uppercase font-bold tracking-wider">SUBMIT LOG</button>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 px-margin-mobile md:hidden bg-surface-container-highest border-t border-outline-variant z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-secondary-container active:scale-95 transition-transform w-full h-full" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">terminal</span>
+<span class="font-label-sm text-label-sm">Command</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-secondary-container active:scale-95 transition-transform w-full h-full" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">factory</span>
+<span class="font-label-sm text-label-sm">Production</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-sm px-3 py-1 hover:bg-secondary-container active:scale-95 transition-transform w-full h-full mx-1" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-label-sm">Quality</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-secondary-container active:scale-95 transition-transform w-full h-full" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">sensors</span>
+<span class="font-label-sm text-label-sm">Status</span>
+</a>
+</nav>
+</body></html>

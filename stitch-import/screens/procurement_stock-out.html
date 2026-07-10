@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cortex - Procurement Stock-Out</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&amp;family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#faf9fc",
+                        "outline-variant": "#c3c6cf",
+                        "inverse-primary": "#abc9f3",
+                        "tertiary-fixed-dim": "#8bd7a7",
+                        "secondary-fixed": "#ffddba",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#003b21",
+                        "surface-container-high": "#e9e8eb",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#005230",
+                        "inverse-surface": "#2f3033",
+                        "tertiary-container": "#005431",
+                        "on-secondary-fixed-variant": "#673d00",
+                        "surface-container-highest": "#e3e2e5",
+                        "primary-container": "#2c4a6e",
+                        "surface-dim": "#dad9dd",
+                        "secondary": "#875200",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#a6f3c2",
+                        "primary": "#123356",
+                        "surface-tint": "#436085",
+                        "on-primary-container": "#9cbae4",
+                        "on-secondary-container": "#6f4300",
+                        "on-surface": "#1a1c1e",
+                        "on-primary-fixed-variant": "#2a486c",
+                        "surface-variant": "#e3e2e5",
+                        "outline": "#73777f",
+                        "secondary-container": "#fead48",
+                        "primary-fixed": "#d3e4ff",
+                        "on-secondary-fixed": "#2b1700",
+                        "surface-container": "#eeedf1",
+                        "on-tertiary-fixed": "#002110",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#faf9fc",
+                        "on-background": "#1a1c1e",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f4f3f6",
+                        "inverse-on-surface": "#f1f0f4",
+                        "secondary-fixed-dim": "#ffb866",
+                        "on-tertiary-container": "#7cc799",
+                        "on-primary-fixed": "#001c38",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#43474e",
+                        "primary-fixed-dim": "#abc9f3",
+                        "error-container": "#ffdad6",
+                        "background": "#faf9fc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "12px",
+                        "unit": "4px",
+                        "container-padding": "16px",
+                        "row-height-dense": "32px",
+                        "row-height-standard": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Archivo Narrow"],
+                        "data-mono": ["IBM Plex Mono"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Archivo Narrow"],
+                        "headline-sm": ["Archivo Narrow"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Archivo Narrow"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "data-mono": ["13px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col md:flex-row overflow-hidden">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen w-64 border-r border-outline-variant bg-surface-container-low dark:bg-surface-container-low shrink-0 z-20">
+<div class="p-4 border-b border-outline-variant">
+<h1 class="font-headline-sm text-headline-sm font-bold tracking-tight text-primary dark:text-primary-fixed-dim">CORTEX</h1>
+<p class="font-data-mono text-data-mono text-on-surface-variant">V2.4.0-CORE</p>
+</div>
+<div class="flex-1 overflow-y-auto py-2">
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-highest transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-highest transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">inventory_2</span>
+<span class="font-body-md text-body-md">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-highest transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">package_2</span>
+<span class="font-body-md text-body-md">Products</span>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-4 py-2 border-l-2 border-primary text-primary font-bold bg-surface-container-high hover:bg-surface-container-highest transition-colors duration-150 opacity-80" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+<span class="font-body-md text-body-md">Procurement</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-highest transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">group</span>
+<span class="font-body-md text-body-md">Employees</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col min-w-0 h-screen overflow-hidden relative">
+<!-- TopAppBar (Mobile & Desktop Header) -->
+<header class="flex items-center justify-between px-container-padding w-full h-16 border-t-4 border-primary border-b border-outline-variant bg-surface dark:bg-surface z-10 shrink-0">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-on-surface-variant hover:bg-surface-container-low p-2 rounded-DEFAULT transition-all duration-200">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="font-data-mono text-headline-sm font-bold text-primary dark:text-primary-fixed-dim pt-1 border-b-2 border-transparent">CORTEX_SYSTEM_OS</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-all duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-all duration-200">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-all duration-200">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden ml-2 border border-outline-variant">
+<img alt="Operator Profile" class="w-full h-full object-cover" data-alt="A close-up, high-contrast black and white portrait of a warehouse operator wearing safety glasses and a hard hat, professional industrial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClpKDR1cfdoxbV27uNbmzrEh_klW4ayd8eFnSUc8CwxeljyAlT6lMheIF4f8i1f3C1rwB2Jyh7ApmhJ4F4cbrz9h3tenAvnHRtF6vMQEf2RhrcVGODY7xD2MpktgrrICyU7v7Zx7JnXKxju6Aoa7jmHOaU-C1lz2mXE9J-5Vk7X4NyXhxK_auCBWIe5qw-nuJ_h7TJBzL0MU9voiEVObgtwwg0ZNsgwoFQohEF-PD5lft_7PGNUOBvRQWa2GVcNnXa-QHfokT_ilRC"/>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 overflow-y-auto p-4 md:p-6 bg-surface">
+<div class="max-w-6xl mx-auto space-y-6">
+<!-- Data Plate Header -->
+<div class="bg-surface border-t-[4px] border-[#2C4A6E] border-b border-l border-r border-outline-variant p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-1">ORDER IDENTIFIER</div>
+<h2 class="font-data-mono text-headline-md font-bold tracking-tight">PR-2905</h2>
+</div>
+<div class="flex flex-wrap gap-6 md:gap-12">
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-1">CURRENT STATUS</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary-container"></div>
+<span class="font-body-md text-body-md font-medium">Picking</span>
+</div>
+</div>
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-1">PRIORITY LEVEL</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="font-body-md text-body-md font-medium text-error">Critical</span>
+</div>
+</div>
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-1">ASSIGNED OPERATOR</div>
+<span class="font-data-mono text-data-mono">OPR-774</span>
+</div>
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-1">ZONE</div>
+<span class="font-data-mono text-data-mono">A-Z3</span>
+</div>
+</div>
+</div>
+<!-- Toast Notification (Simulated Success) -->
+<div class="hidden bg-[#2F7A52]/10 border border-[#2F7A52] p-3 flex items-center justify-between transition-opacity duration-300" id="success-toast">
+<div class="flex items-center gap-3 text-[#2F7A52]">
+<span class="material-symbols-outlined">check_circle</span>
+<span class="font-data-mono text-data-mono font-bold tracking-tight">Handover Recorded - ID: 4492-X</span>
+</div>
+<button class="text-[#2F7A52] hover:opacity-70" onclick="document.getElementById('success-toast').classList.add('hidden')">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<!-- Main Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Materials Table Section (Spans 2 columns) -->
+<div class="lg:col-span-2 border border-outline-variant bg-surface flex flex-col">
+<div class="p-3 border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<h3 class="font-label-caps text-label-caps text-on-surface font-bold">MATERIALS REQUISITION LIST</h3>
+<span class="font-data-mono text-[10px] text-on-surface-variant">4 ITEMS PENDING</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#F1F2F4] border-b border-[#E2E5E9]">
+<th class="p-3 font-label-caps text-label-caps text-on-surface-variant font-bold w-12">STS</th>
+<th class="p-3 font-label-caps text-label-caps text-on-surface-variant font-bold">SKU NUMBER</th>
+<th class="p-3 font-label-caps text-label-caps text-on-surface-variant font-bold">DESCRIPTION</th>
+<th class="p-3 font-label-caps text-label-caps text-on-surface-variant font-bold text-right">QTY REQ</th>
+<th class="p-3 font-label-caps text-label-caps text-on-surface-variant font-bold">BIN LOC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-[#E2E5E9] h-[40px] hover:bg-surface-container-lowest transition-colors">
+<td class="p-3 pl-4">
+<input class="w-4 h-4 rounded-sm border-outline-variant text-primary focus:ring-primary focus:ring-offset-0 bg-surface checked:bg-primary transition-all" type="checkbox"/>
+</td>
+<td class="p-3 font-data-mono text-data-mono font-medium text-primary">TRX-8824-A</td>
+<td class="p-3 font-body-sm text-body-sm text-on-surface">Thermal Resistor Sensor</td>
+<td class="p-3 font-data-mono text-data-mono text-right font-bold">12</td>
+<td class="p-3 font-data-mono text-data-mono text-on-surface-variant bg-surface-container-low w-fit my-1 px-2 py-0.5 inline-block">B2-14</td>
+</tr>
+<tr class="border-b border-[#E2E5E9] h-[40px] hover:bg-surface-container-lowest transition-colors">
+<td class="p-3 pl-4">
+<input class="w-4 h-4 rounded-sm border-outline-variant text-primary focus:ring-primary focus:ring-offset-0 bg-surface checked:bg-primary transition-all" type="checkbox"/>
+</td>
+<td class="p-3 font-data-mono text-data-mono font-medium text-primary">HX-901-VL</td>
+<td class="p-3 font-body-sm text-body-sm text-on-surface">Hydraulic Valve Assembly</td>
+<td class="p-3 font-data-mono text-data-mono text-right font-bold">04</td>
+<td class="p-3 font-data-mono text-data-mono text-on-surface-variant bg-surface-container-low w-fit my-1 px-2 py-0.5 inline-block">C1-08</td>
+</tr>
+<tr class="border-b border-[#E2E5E9] h-[40px] hover:bg-surface-container-lowest transition-colors">
+<td class="p-3 pl-4">
+<input class="w-4 h-4 rounded-sm border-outline-variant text-primary focus:ring-primary focus:ring-offset-0 bg-surface checked:bg-primary transition-all" type="checkbox"/>
+</td>
+<td class="p-3 font-data-mono text-data-mono font-medium text-primary">CAB-4MM-X</td>
+<td class="p-3 font-body-sm text-body-sm text-on-surface">Shielded Copper Cable (Meters)</td>
+<td class="p-3 font-data-mono text-data-mono text-right font-bold">50</td>
+<td class="p-3 font-data-mono text-data-mono text-on-surface-variant bg-surface-container-low w-fit my-1 px-2 py-0.5 inline-block">A4-22</td>
+</tr>
+<tr class="border-b border-[#E2E5E9] h-[40px] hover:bg-surface-container-lowest transition-colors">
+<td class="p-3 pl-4">
+<input class="w-4 h-4 rounded-sm border-outline-variant text-primary focus:ring-primary focus:ring-offset-0 bg-surface checked:bg-primary transition-all" type="checkbox"/>
+</td>
+<td class="p-3 font-data-mono text-data-mono font-medium text-primary">PNU-FT-12</td>
+<td class="p-3 font-body-sm text-body-sm text-on-surface">Pneumatic T-Fittings</td>
+<td class="p-3 font-data-mono text-data-mono text-right font-bold">24</td>
+<td class="p-3 font-data-mono text-data-mono text-on-surface-variant bg-surface-container-low w-fit my-1 px-2 py-0.5 inline-block">D3-05</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Action Panel (Spans 1 column) -->
+<div class="flex flex-col gap-6">
+<!-- Handover Auth -->
+<div class="border border-outline-variant bg-surface p-4">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-4 font-bold border-b border-outline-variant pb-2">HANDOVER AUTHORIZATION</h3>
+<div class="space-y-4">
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-1">RECEIVING DEPARTMENT</label>
+<div class="relative">
+<select class="w-full border border-outline-variant bg-surface p-2 font-data-mono text-data-mono text-on-surface focus:border-primary focus:ring-0 appearance-none rounded-none">
+<option>Assembly Line B</option>
+<option>Maintenance Bay 1</option>
+<option>QA Testing Lab</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-2 text-on-surface-variant pointer-events-none" style="font-size: 16px;">arrow_drop_down</span>
+</div>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-1">SECURITY BADGE SCAN</label>
+<div class="flex items-center border border-outline-variant bg-surface focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined pl-2 text-on-surface-variant" style="font-size: 18px;">barcode_scanner</span>
+<input class="w-full border-none bg-transparent p-2 font-data-mono text-data-mono focus:ring-0" placeholder="Awaiting Input..." type="text"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Primary Action -->
+<div class="mt-auto">
+<button class="w-full bg-[#2C4A6E] hover:bg-[#1f354f] text-on-primary font-label-caps text-label-caps font-bold py-4 px-4 flex items-center justify-center gap-2 transition-colors duration-200" onclick="simulateHandover()">
+<span class="material-symbols-outlined" style="font-size: 18px;">outbox</span>
+                                ISSUE ALL MATERIALS
+                            </button>
+<button class="w-full mt-2 border border-outline-variant text-on-surface hover:bg-surface-container-low font-label-caps text-label-caps font-bold py-3 px-4 transition-colors duration-200">
+                                HOLD PARTIAL ORDER
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+        function simulateHandover() {
+            const btn = document.querySelector('button.bg-\\[\\#2C4A6E\\]');
+            const originalText = btn.innerHTML;
+            
+            // Loading state
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin" style="font-size: 18px;">autorenew</span> PROCESSING...';
+            btn.classList.add('opacity-80', 'cursor-not-allowed');
+            
+            setTimeout(() => {
+                // Show toast
+                const toast = document.getElementById('success-toast');
+                toast.classList.remove('hidden');
+                
+                // Reset button
+                btn.innerHTML = originalText;
+                btn.classList.remove('opacity-80', 'cursor-not-allowed');
+                
+                // Check all boxes
+                document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = true);
+                
+                // Auto hide toast after 5s
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 5000);
+            }, 1200);
+        }
+    </script>
+</body></html>

@@ -1,0 +1,16 @@
+-- Seed template for the first admin user.
+-- Run ONLY after creating the admin in Supabase Auth dashboard.
+--
+-- Steps:
+-- 1. Supabase Dashboard → Authentication → Users → Add user (email + password)
+-- 2. Copy the new user's UUID from the users list
+-- 3. Replace placeholders below and run in SQL Editor
+
+-- INSERT INTO public.users (id, email, role, created_by, active)
+-- VALUES (
+--   '00000000-0000-0000-0000-000000000001',  -- auth.users.id
+--   'admin@example.com',
+--   'admin',
+--   NULL,
+--   TRUE
+-- );

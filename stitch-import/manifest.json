@@ -1,0 +1,79 @@
+[
+  {
+    "screenId": "41cfcf2b9a1b4f628fa4d79aed034a5e",
+    "route": "/login",
+    "title": "Login",
+    "filename": "login.html",
+    "stitchTitle": "Login - Cortex"
+  },
+  {
+    "screenId": "9482609546f04a6c93acd9ba36dfecfc",
+    "route": "/dashboard",
+    "title": "Manager Dashboard",
+    "filename": "dashboard.html",
+    "stitchTitle": "Manager Dashboard - Cortex"
+  },
+  {
+    "screenId": "e9700e8d2f00427fa1c1f153136a79ba",
+    "route": "/command-center",
+    "title": "Command Center",
+    "filename": "command-center.html",
+    "stitchTitle": "Command Center - Cortex OS"
+  },
+  {
+    "screenId": "bed0a7e732dc44ebbf14a594ac32690b",
+    "route": "/products/setup",
+    "title": "Product Setup",
+    "filename": "products_setup.html",
+    "stitchTitle": "Product Setup: Model-A Turbine - Cortex"
+  },
+  {
+    "screenId": "c62cb5c7a99048c08fc5019aebd9c7d5",
+    "route": "/procurement/stock-out",
+    "title": "Stock-Out",
+    "filename": "procurement_stock-out.html",
+    "stitchTitle": "Stock-Out: PR-2905 - Cortex"
+  },
+  {
+    "screenId": "e6a9abcd9c2c4ef08b9712e082e895eb",
+    "route": "/orders/detail",
+    "title": "Order Detail",
+    "filename": "orders_detail.html",
+    "stitchTitle": "Order PR-2904 Detail - Cortex"
+  },
+  {
+    "screenId": "7f9bc143be9f4e41ac33fe96c393f12b",
+    "route": "/orders",
+    "title": "Order",
+    "filename": "orders.html",
+    "stitchTitle": "Order PR-2904 - Cortex OS"
+  },
+  {
+    "screenId": "c75f060908a24e8ab7a33a0e2132d810",
+    "route": "/tasks/production",
+    "title": "Production Task",
+    "filename": "tasks_production.html",
+    "stitchTitle": "Production Task - Cortex OS"
+  },
+  {
+    "screenId": "c97f024b994e41439e7dc28c1f457f63",
+    "route": "/tasks",
+    "title": "Task",
+    "filename": "tasks.html",
+    "stitchTitle": "Task: SN-8812 - Cortex"
+  },
+  {
+    "screenId": "9a18dcfa278644abbddc26f8b4bd0c75",
+    "route": "/qc/inspection",
+    "title": "QC Inspection",
+    "filename": "qc_inspection.html",
+    "stitchTitle": "QC Inspection - Cortex OS"
+  },
+  {
+    "screenId": "747b4fff3f284c2ebf49b5a437a6c211",
+    "route": "/qc/form",
+    "title": "QC Form",
+    "filename": "qc_form.html",
+    "stitchTitle": "QC Form: SN-8812 - Cortex"
+  }
+]

@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#F7F8FA] font-sans text-on-surface antialiased;
+  }
+}
+
+@layer components {
+  .cortex-label {
+    @apply font-headline text-label-caps uppercase text-on-surface-variant;
+  }
+
+  .cortex-input {
+    @apply h-row-height-standard w-full rounded border border-border bg-surface px-3 font-mono text-data-mono text-on-surface transition-colors focus:border-primary-container focus:outline-none focus:ring-0;
+  }
+
+  .cortex-btn-primary {
+    @apply flex h-row-height-standard w-full items-center justify-center gap-2 rounded bg-primary-container font-headline text-label-caps uppercase text-on-primary transition-colors hover:bg-primary;
+  }
+
+  .cortex-card {
+    @apply rounded border border-border bg-surface;
+  }
+
+  .cortex-module {
+    @apply rounded border border-border bg-surface-container-lowest;
+  }
+}

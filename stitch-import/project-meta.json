@@ -1,0 +1,258 @@
+{
+  "createTime": "2026-07-02T06:41:32.025981Z",
+  "designTheme": {
+    "bodyFont": "INTER",
+    "bodyFontFamily": "Inter",
+    "colorMode": "LIGHT",
+    "colorVariant": "FIDELITY",
+    "customColor": "#2c4a6e",
+    "designMd": "---\nname: Industrial Precision System\ncolors:\n  surface: '#faf9fc'\n  surface-dim: '#dad9dd'\n  surface-bright: '#faf9fc'\n  surface-container-lowest: '#ffffff'\n  surface-container-low: '#f4f3f6'\n  surface-container: '#eeedf1'\n  surface-container-high: '#e9e8eb'\n  surface-container-highest: '#e3e2e5'\n  on-surface: '#1a1c1e'\n  on-surface-variant: '#43474e'\n  inverse-surface: '#2f3033'\n  inverse-on-surface: '#f1f0f4'\n  outline: '#73777f'\n  outline-variant: '#c3c6cf'\n  surface-tint: '#436085'\n  primary: '#123356'\n  on-primary: '#ffffff'\n  primary-container: '#2c4a6e'\n  on-primary-container: '#9cbae4'\n  inverse-primary: '#abc9f3'\n  secondary: '#875200'\n  on-secondary: '#ffffff'\n  secondary-container: '#fead48'\n  on-secondary-container: '#6f4300'\n  tertiary: '#003b21'\n  on-tertiary: '#ffffff'\n  tertiary-container: '#005431'\n  on-tertiary-container: '#7cc799'\n  error: '#ba1a1a'\n  on-error: '#ffffff'\n  error-container: '#ffdad6'\n  on-error-container: '#93000a'\n  primary-fixed: '#d3e4ff'\n  primary-fixed-dim: '#abc9f3'\n  on-primary-fixed: '#001c38'\n  on-primary-fixed-variant: '#2a486c'\n  secondary-fixed: '#ffddba'\n  secondary-fixed-dim: '#ffb866'\n  on-secondary-fixed: '#2b1700'\n  on-secondary-fixed-variant: '#673d00'\n  tertiary-fixed: '#a6f3c2'\n  tertiary-fixed-dim: '#8bd7a7'\n  on-tertiary-fixed: '#002110'\n  on-tertiary-fixed-variant: '#005230'\n  background: '#faf9fc'\n  on-background: '#1a1c1e'\n  surface-variant: '#e3e2e5'\ntypography:\n  headline-lg:\n    fontFamily: Archivo Narrow\n    fontSize: 24px\n    fontWeight: '600'\n    lineHeight: 32px\n    letterSpacing: -0.01em\n  headline-md:\n    fontFamily: Archivo Narrow\n    fontSize: 20px\n    fontWeight: '600'\n    lineHeight: 28px\n  headline-sm:\n    fontFamily: Archivo Narrow\n    fontSize: 16px\n    fontWeight: '600'\n    lineHeight: 24px\n  body-lg:\n    fontFamily: Inter\n    fontSize: 16px\n    fontWeight: '400'\n    lineHeight: 24px\n  body-md:\n    fontFamily: Inter\n    fontSize: 14px\n    fontWeight: '400'\n    lineHeight: 20px\n  body-sm:\n    fontFamily: Inter\n    fontSize: 12px\n    fontWeight: '400'\n    lineHeight: 18px\n  label-caps:\n    fontFamily: Archivo Narrow\n    fontSize: 11px\n    fontWeight: '700'\n    lineHeight: 16px\n    letterSpacing: 0.05em\n  data-mono:\n    fontFamily: IBM Plex Mono\n    fontSize: 13px\n    fontWeight: '500'\n    lineHeight: 20px\nrounded:\n  sm: 0.125rem\n  DEFAULT: 0.25rem\n  md: 0.375rem\n  lg: 0.5rem\n  xl: 0.75rem\n  full: 9999px\nspacing:\n  unit: 4px\n  container-padding: 16px\n  gutter: 12px\n  row-height-dense: 32px\n  row-height-standard: 40px\n---\n\n## Brand & Style\nThe design system is engineered for high-stakes industrial environments, drawing direct inspiration from avionics dashboards and precision instrumentation. The brand personality is authoritative, reliable, and strictly functional. It prioritizes information density and clarity over aesthetic decoration, ensuring that warehouse and production floor operators can process complex data streams with zero ambiguity.\n\nThe visual style is **Corporate / Modern** with a lean towards **Technical Minimalism**. It avoids all contemporary \"soft\" trends such as glassmorphism, shadows, or gradients. Instead, it relies on hairline borders, rigid grid structures, and a clear typographic hierarchy to create a sense of professional-grade stability. The UI should feel like a piece of high-end industrial equipment: rugged, precise, and efficient.\n\n## Colors\nThe color palette is strictly utility-driven. The background uses a cool near-white to reduce eye strain under industrial lighting. \n\n- **Primary (Steel Blue):** Reserved for primary actions, navigation states, and structural identifiers.\n- **Alert (Amber):** Used for caution, high-priority tasks, or items requiring immediate attention without being critical failures.\n- **Success (Green):** Indicates completed cycles, active machinery, or valid data entry.\n- **Error (Red):** Used for system failures, depleted inventory, or critical safety alerts.\n- **Neutrals:** Text and borders use a high-contrast grayscale to maintain legibility in high-density data tables.\n\n## Typography\nTypography is split by functional role to aid rapid scanning:\n- **Headers & Labels:** Archivo Narrow provides a technical, space-efficient feel. Small caps are used for metadata labels to distinguish them from the data values they describe.\n- **General UI & Tables:** Inter is used for its superior legibility at small sizes in dense tabular formats.\n- **Technical Data:** IBM Plex Mono is mandated for all non-prose data including Serial Numbers, SKUs, Timestamps, and Coordinates to prevent character confusion (e.g., '0' vs 'O', '1' vs 'l').\n\n## Layout & Spacing\nThe system utilizes a **fixed grid** approach with high-density spacing based on a 4px baseline. \n\n- **Desktop:** 12-column grid, 12px gutters, 24px outer margins. Panels are typically fixed-width or snap to column increments.\n- **Data Density:** Vertical rhythm is tight. Standard table rows are 40px, while \"Dense\" modes (for large inventory lists) drop to 32px.\n- **Structure:** Content is organized into \"Modules\" separated by 1px hairline borders (#E2E5E9). Negative space is used strategically to group related data, but overall whitespace is kept to a functional minimum to maximize visible information.\n\n## Elevation & Depth\nDepth is communicated through **Tonal Layering** and **Borders** rather than shadows. \n- **Level 0 (Background):** #F7F8FA.\n- **Level 1 (Surface):** #FFFFFF – Used for cards, table bodies, and input fields.\n- **Level 2 (Header/Overlay):** #F1F2F4 – Used for table headers and sidebars.\n\nSeparation is achieved through 1px solid borders. There are no shadows in the system. When an element is \"raised\" (like a modal), it is defined by a thicker 2px border or a high-contrast overlay, maintaining a flat, industrial aesthetic.\n\n## Shapes\nThe shape language is rigid and geometric. \n- **Standard Corners:** 4px radius for buttons, input fields, and small containers.\n- **Large Containers:** 6px radius for primary dashboard modules.\n- **Square:** 0px radius is acceptable for table cells and internal dividers to reinforce the \"instrument cluster\" appearance.\n\n## Components\n- **Data Plate Header:** A specialized component for record views. A #2C4A6E top-border strip. Left-aligned: Serial ID in IBM Plex Mono (Bold). Right-aligned: 3-4 metadata clusters (e.g., Status, Priority) featuring a `label-caps` descriptor above a `body-md` value.\n- **Buttons:** Solid #2C4A6E background with white text for primary actions. Secondary buttons use a 1px border with no fill. Labels must be verb-oriented (e.g., \"DISPATCH ORDER\").\n- **Status Indicators:** A 8px solid circular dot using the system semantic colors (Green, Amber, Red) followed by `body-sm` text.\n- **Input Fields:** Rectangular with 1px #E2E5E9 borders. On focus, the border changes to 1px #2C4A6E. No glow or shadow.\n- **Data Tables:** No vertical lines between columns; use horizontal lines only (#E2E5E9). Header row uses #F1F2F4 background with `label-caps` text.\n- **Chips/Badges:** Square-edged or 2px radius. Light tinted backgrounds with dark text for categorizing SKUs or Warehouse Zones.",
+    "font": "ARCHIVO_NARROW",
+    "headlineFont": "ARCHIVO_NARROW",
+    "headlineFontFamily": "Archivo Narrow",
+    "labelFont": "ARCHIVO_NARROW",
+    "labelFontFamily": "Archivo Narrow",
+    "namedColors": {
+      "background": "#faf9fc",
+      "error": "#ba1a1a",
+      "error_container": "#ffdad6",
+      "inverse_on_surface": "#f1f0f4",
+      "inverse_primary": "#abc9f3",
+      "inverse_surface": "#2f3033",
+      "on_background": "#1a1c1e",
+      "on_error": "#ffffff",
+      "on_error_container": "#93000a",
+      "on_primary": "#ffffff",
+      "on_primary_container": "#9cbae4",
+      "on_primary_fixed": "#001c38",
+      "on_primary_fixed_variant": "#2a486c",
+      "on_secondary": "#ffffff",
+      "on_secondary_container": "#6f4300",
+      "on_secondary_fixed": "#2b1700",
+      "on_secondary_fixed_variant": "#673d00",
+      "on_surface": "#1a1c1e",
+      "on_surface_variant": "#43474e",
+      "on_tertiary": "#ffffff",
+      "on_tertiary_container": "#7cc799",
+      "on_tertiary_fixed": "#002110",
+      "on_tertiary_fixed_variant": "#005230",
+      "outline": "#73777f",
+      "outline_variant": "#c3c6cf",
+      "primary": "#123356",
+      "primary_container": "#2c4a6e",
+      "primary_fixed": "#d3e4ff",
+      "primary_fixed_dim": "#abc9f3",
+      "secondary": "#875200",
+      "secondary_container": "#fead48",
+      "secondary_fixed": "#ffddba",
+      "secondary_fixed_dim": "#ffb866",
+      "surface": "#faf9fc",
+      "surface_bright": "#faf9fc",
+      "surface_container": "#eeedf1",
+      "surface_container_high": "#e9e8eb",
+      "surface_container_highest": "#e3e2e5",
+      "surface_container_low": "#f4f3f6",
+      "surface_container_lowest": "#ffffff",
+      "surface_dim": "#dad9dd",
+      "surface_tint": "#436085",
+      "surface_variant": "#e3e2e5",
+      "tertiary": "#003b21",
+      "tertiary_container": "#005431",
+      "tertiary_fixed": "#a6f3c2",
+      "tertiary_fixed_dim": "#8bd7a7"
+    },
+    "overridePrimaryColor": "#2c4a6e",
+    "overrideSecondaryColor": "#d98e2b",
+    "overrideTertiaryColor": "#2f7a52",
+    "roundness": "ROUND_FOUR",
+    "spacing": {
+      "container-padding": "16px",
+      "gutter": "12px",
+      "row-height-dense": "32px",
+      "row-height-standard": "40px",
+      "unit": "4px"
+    },
+    "spacingScale": 2,
+    "typography": {
+      "body-lg": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px"
+      },
+      "body-md": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "lineHeight": "20px"
+      },
+      "body-sm": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "lineHeight": "18px"
+      },
+      "data-mono": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "13px",
+        "fontWeight": "500",
+        "lineHeight": "20px"
+      },
+      "headline-lg": {
+        "fontFamily": "Archivo Narrow",
+        "fontSize": "24px",
+        "fontWeight": "600",
+        "letterSpacing": "-0.01em",
+        "lineHeight": "32px"
+      },
+      "headline-md": {
+        "fontFamily": "Archivo Narrow",
+        "fontSize": "20px",
+        "fontWeight": "600",
+        "lineHeight": "28px"
+      },
+      "headline-sm": {
+        "fontFamily": "Archivo Narrow",
+        "fontSize": "16px",
+        "fontWeight": "600",
+        "lineHeight": "24px"
+      },
+      "label-caps": {
+        "fontFamily": "Archivo Narrow",
+        "fontSize": "11px",
+        "fontWeight": "700",
+        "letterSpacing": "0.05em",
+        "lineHeight": "16px"
+      }
+    }
+  },
+  "deviceType": "DESKTOP",
+  "metadata": {
+    "userRole": "OWNER"
+  },
+  "name": "projects/16391226028490069095",
+  "origin": "STITCH",
+  "projectType": "TEXT_TO_UI_PRO",
+  "screenInstances": [
+    {
+      "height": 1024,
+      "id": "41cfcf2b9a1b4f628fa4d79aed034a5e",
+      "sourceScreen": "projects/16391226028490069095/screens/41cfcf2b9a1b4f628fa4d79aed034a5e",
+      "width": 1280,
+      "x": 1696
+    },
+    {
+      "height": 32,
+      "id": "4555f0b0453b45b6b00b09358d7b9038",
+      "sourceScreen": "projects/16391226028490069095/screens/4555f0b0453b45b6b00b09358d7b9038",
+      "width": 32,
+      "x": 1600
+    },
+    {
+      "height": 1037,
+      "id": "747b4fff3f284c2ebf49b5a437a6c211",
+      "sourceScreen": "projects/16391226028490069095/screens/747b4fff3f284c2ebf49b5a437a6c211",
+      "width": 390,
+      "x": 7526
+    },
+    {
+      "height": 1024,
+      "id": "7f9bc143be9f4e41ac33fe96c393f12b",
+      "sourceScreen": "projects/16391226028490069095/screens/7f9bc143be9f4e41ac33fe96c393f12b",
+      "width": 1280,
+      "x": 2368,
+      "y": 1458
+    },
+    {
+      "height": 1024,
+      "id": "9482609546f04a6c93acd9ba36dfecfc",
+      "sourceScreen": "projects/16391226028490069095/screens/9482609546f04a6c93acd9ba36dfecfc",
+      "width": 1280,
+      "x": 3034,
+      "y": 13
+    },
+    {
+      "height": 1263,
+      "id": "9a18dcfa278644abbddc26f8b4bd0c75",
+      "sourceScreen": "projects/16391226028490069095/screens/9a18dcfa278644abbddc26f8b4bd0c75",
+      "width": 390,
+      "x": 4166,
+      "y": 1458
+    },
+    {
+      "height": 540,
+      "id": "assets_62a2108788024257afa60e53200aa9ed",
+      "sourceAsset": "assets/62a2108788024257afa60e53200aa9ed",
+      "type": "DESIGN_SYSTEM_INSTANCE",
+      "width": 960,
+      "x": 229,
+      "y": 662
+    },
+    {
+      "height": 540,
+      "id": "assets_8d854afa3b1a482083ccb9bd4d26e82e",
+      "sourceAsset": "assets/8d854afa3b1a482083ccb9bd4d26e82e",
+      "type": "DESIGN_SYSTEM_INSTANCE",
+      "width": 960,
+      "y": 1458
+    },
+    {
+      "height": 1024,
+      "id": "bed0a7e732dc44ebbf14a594ac32690b",
+      "sourceScreen": "projects/16391226028490069095/screens/bed0a7e732dc44ebbf14a594ac32690b",
+      "width": 1280,
+      "x": 5728
+    },
+    {
+      "height": 1024,
+      "id": "c62cb5c7a99048c08fc5019aebd9c7d5",
+      "sourceScreen": "projects/16391226028490069095/screens/c62cb5c7a99048c08fc5019aebd9c7d5",
+      "width": 1280,
+      "x": 7980
+    },
+    {
+      "height": 1226,
+      "id": "c75f060908a24e8ab7a33a0e2132d810",
+      "sourceScreen": "projects/16391226028490069095/screens/c75f060908a24e8ab7a33a0e2132d810",
+      "width": 390,
+      "x": 3712,
+      "y": 1458
+    },
+    {
+      "height": 923,
+      "id": "c97f024b994e41439e7dc28c1f457f63",
+      "sourceScreen": "projects/16391226028490069095/screens/c97f024b994e41439e7dc28c1f457f63",
+      "width": 390,
+      "x": 7072
+    },
+    {
+      "height": 512,
+      "id": "cda7ba0972ec4f639799b81471000e8b",
+      "sourceScreen": "projects/16391226028490069095/screens/cda7ba0972ec4f639799b81471000e8b",
+      "width": 512,
+      "x": 1024
+    },
+    {
+      "height": 1024,
+      "id": "e6a9abcd9c2c4ef08b9712e082e895eb",
+      "sourceScreen": "projects/16391226028490069095/screens/e6a9abcd9c2c4ef08b9712e082e895eb",
+      "width": 1280,
+      "x": 4384
+    },
+    {
+      "height": 1024,
+      "id": "e9700e8d2f00427fa1c1f153136a79ba",
+      "sourceScreen": "projects/16391226028490069095/screens/e9700e8d2f00427fa1c1f153136a79ba",
+      "width": 1280,
+      "x": 1024,
+      "y": 1458
+    }
+  ],
+  "thumbnailScreenshot": {
+    "downloadUrl": "https://lh3.googleusercontent.com/aida/AP1WRLtlF3U11f41fC1RUhyzqtLnBsYk24CsoyC0czWSww18c3wlvQpQpOxBAIQa0teDoXxPY_OKWbWe4KAlvB4_7wmVoh_5Opl8idN4oNQ4pR8rzuxaOa_6BQHlYI6yySuekuAJz_-oaKUCKCClD1ybAUAQbWh8zNMBD-d1GmvCZ4q_32BqqZ5mXZr9WC4176GY_yhRFeYwVJK09uxewL1lp3XVEhjlMvGgbcny0LKRO1k8BI2sYN9XtJ_ng6s",
+    "name": "projects/16391226028490069095/files/a352b843744f435195a7c9991dcdf947"
+  },
+  "title": "Cortex Industrial Management System",
+  "updateTime": "2026-07-02T06:49:00.049677Z",
+  "visibility": "PRIVATE"
+}
