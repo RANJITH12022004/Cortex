@@ -1,9 +1,11 @@
 name: Keep Supabase alive
 
 on:
-  schedule:
-    # Twice daily (UTC) — keeps the free-tier project from pausing after inactivity.
-    - cron: '0 6,18 * * *'
+  # Schedule disabled: linked project ttgquwvfpknqlfrnfksk (cortex.v1) no longer
+  # resolves in DNS — recreate the Supabase project, update SUPABASE_URL /
+  # SUPABASE_ANON_KEY secrets, then restore the cron below.
+  # schedule:
+  #   - cron: '0 6,18 * * *'
   workflow_dispatch:
 
 permissions:
@@ -21,22 +23,46 @@ jobs:
         run: |
           set -euo pipefail
 
-          if [ -z "${SUPABASE_URL}" ] || [ -z "${SUPABASE_ANON_KEY}" ]; then
+          if [ -z "${SUPABASE_URL:-}" ] || [ -z "${SUPABASE_ANON_KEY:-}" ]; then
             echo "::error::Missing SUPABASE_URL or SUPABASE_ANON_KEY repository secrets."
             exit 1
           fi
 
-          echo "Pinging ${SUPABASE_URL}"
+          BASE_URL="${SUPABASE_URL%/}"
+          echo "Pinging ${BASE_URL}"
 
-          auth_status=$(curl -sS -o /tmp/auth-health.txt -w "%{http_code}" \
-            "${SUPABASE_URL}/auth/v1/health" \
+          set +e
+          auth_status=$(curl -sS --connect-timeout 15 --max-time 30 \
+            -o /tmp/auth-health.txt -w "%{http_code}" \
+            "${BASE_URL}/auth/v1/health" \
             -H "apikey: ${SUPABASE_ANON_KEY}")
+          auth_curl_exit=$?
+          set -e
+
+          if [ "${auth_curl_exit}" -ne 0 ]; then
+            echo "::error::Could not reach Supabase (curl exit ${auth_curl_exit})."
+            echo "Host may be deleted or DNS may be broken for ${BASE_URL}."
+            echo "Recreate the project in Supabase, then update repository secrets SUPABASE_URL and SUPABASE_ANON_KEY."
+            echo "After secrets are fixed, re-enable the schedule cron in this workflow."
+            exit 1
+          fi
+
           echo "Auth health: HTTP ${auth_status}"
 
-          rest_status=$(curl -sS -o /tmp/rest-root.txt -w "%{http_code}" \
-            "${SUPABASE_URL}/rest/v1/" \
+          set +e
+          rest_status=$(curl -sS --connect-timeout 15 --max-time 30 \
+            -o /tmp/rest-root.txt -w "%{http_code}" \
+            "${BASE_URL}/rest/v1/" \
             -H "apikey: ${SUPABASE_ANON_KEY}" \
             -H "Authorization: Bearer ${SUPABASE_ANON_KEY}")
+          rest_curl_exit=$?
+          set -e
+
+          if [ "${rest_curl_exit}" -ne 0 ]; then
+            echo "::error::REST ping failed (curl exit ${rest_curl_exit})."
+            exit 1
+          fi
+
           echo "REST API: HTTP ${rest_status}"
 
           if [ "${auth_status}" -ge 500 ] && [ "${rest_status}" -ge 500 ]; then
