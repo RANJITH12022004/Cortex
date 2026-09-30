@@ -22,7 +22,7 @@ This downloads:
 |---|---|
 | `/login` | Login - Cortex |
 | `/dashboard` | Manager Dashboard - Cortex |
-| `/command-center` | Command Center - Cortex OS |
+| `/command-center` | Command Center - Cortex |
 | `/products/setup` | Product Setup |
 | `/procurement/stock-out` | Stock-Out |
 | `/orders` | Order PR-2904 |

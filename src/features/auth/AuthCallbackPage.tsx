@@ -105,7 +105,7 @@ export function AuthCallbackPage() {
         <div className="p-8">
           <div className="mb-8 text-center">
             <p className="font-headline text-headline-lg uppercase tracking-wide text-primary-container">
-              Cortex OS
+              Cortex
             </p>
             <h1 className="mt-3 font-headline text-headline-md text-on-surface">Activate your account</h1>
             <p className="mt-2 text-body-sm text-on-surface-variant">

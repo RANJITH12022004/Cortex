@@ -3,8 +3,8 @@
  * Sync Zoho SMTP Edge Function secrets and send a test notification email.
  * Uses the same mailbox/password as Supabase Auth → SMTP (smtp.zoho.in).
  *
- * Usage (PowerShell) — run from the FacMan repo root:
- *   cd C:\Users\ranjith\Downloads\FacMan
+ * Usage (PowerShell) — run from the Cortex repo root:
+ *   cd C:\Users\ranjith\Downloads\Cortex
  *   $env:ZOHO_SMTP_PASS = 'your-zoho-app-password'
  *   npm run finish:zoho-smtp
  */
@@ -43,7 +43,7 @@ execSync(
 
 const body = JSON.stringify({
   to: 'ranjith@raiselabequip.com',
-  subject: 'FacMan test notification',
+  subject: 'Cortex test notification',
   body: 'If you received this, Zoho SMTP and send-notification-email are working.',
   event_type: 'task_assigned',
 });

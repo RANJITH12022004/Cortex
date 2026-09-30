@@ -172,6 +172,7 @@ export async function recordStockIn(values: StockInFormValues) {
     body: {
       requestId: crypto.randomUUID(),
       partId: values.part_id,
+      boxId: values.box_id,
       vendorId: normalizeVendorId(values.vendor_id ?? null),
       qty: values.qty,
       unitCost: values.unit_cost,

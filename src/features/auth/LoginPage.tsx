@@ -55,7 +55,7 @@ export function LoginPage() {
         <div className="flex flex-col items-center p-8">
           <div className="mb-8 text-center">
             <p className="font-headline text-headline-lg uppercase tracking-wide text-primary-container">
-              Cortex OS
+              Cortex
             </p>
             <p className="mt-1 font-mono text-data-mono text-on-surface-variant">
               Production & Warehouse Management

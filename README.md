@@ -1,4 +1,4 @@
-# FacMan — Production & Warehouse Management System
+# Cortex — Production & Warehouse Management System
 
 React + Vite + TypeScript PWA backed by Supabase (Postgres, Auth, Edge Functions).
 

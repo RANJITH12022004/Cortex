@@ -80,7 +80,7 @@ export function ManagerLayout({ title, children, hideTitle = false }: ManagerLay
             </select>
           </div>
           <span className="hidden font-mono text-data-mono font-semibold text-primary md:inline">
-            CORTEX_SYSTEM_OS
+            CORTEX
           </span>
           <div className="flex items-center gap-3 text-body-sm">
             {profile && (

@@ -22,10 +22,25 @@ export const inviteSchema = z.object({
 
 export const adminInviteSchema = z.object({
   email: z.string().email('Enter a valid email'),
-  role: z.enum(['manager', 'senior_manager', 'procurement', 'employee']),
+  role: z.enum(['manager', 'senior_manager', 'inventory', 'user', 'procurement', 'employee']),
+});
+
+export const superAdminInviteSchema = z.object({
+  email: z.string().email('Enter a valid email'),
+  role: z.enum([
+    'super_admin',
+    'admin',
+    'manager',
+    'senior_manager',
+    'inventory',
+    'user',
+    'procurement',
+    'employee',
+  ]),
 });
 
 export type LoginFormValues = z.infer<typeof loginSchema>;
 export type SetPasswordFormValues = z.infer<typeof setPasswordSchema>;
 export type InviteFormValues = z.infer<typeof inviteSchema>;
 export type AdminInviteFormValues = z.infer<typeof adminInviteSchema>;
+export type SuperAdminInviteFormValues = z.infer<typeof superAdminInviteSchema>;

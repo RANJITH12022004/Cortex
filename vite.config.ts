@@ -15,9 +15,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['icons/icon-192.png', 'icons/icon-512.png'],
       manifest: {
-        name: 'FacMan — Production & Warehouse',
-        short_name: 'FacMan',
-        description: 'Production & Warehouse Management System',
+        name: 'Cortex',
+        short_name: 'Cortex',
+        description: 'Production and warehouse management',
         theme_color: '#2c4a6e',
         background_color: '#ffffff',
         display: 'standalone',

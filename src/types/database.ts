@@ -1,4 +1,12 @@
-export type UserRole = 'admin' | 'manager' | 'senior_manager' | 'procurement' | 'employee';
+export type UserRole =
+  | 'super_admin'
+  | 'admin'
+  | 'manager'
+  | 'senior_manager'
+  | 'inventory'
+  | 'procurement'
+  | 'employee'
+  | 'user';
 
 export type PrStatus =
   | 'pending_check'
@@ -139,6 +147,7 @@ export type Database = {
           notes: string | null;
           received_by: string;
           received_at: string;
+          box_id: string | null;
         };
         Insert: {
           id?: string;
@@ -150,6 +159,7 @@ export type Database = {
           notes?: string | null;
           received_by: string;
           received_at?: string;
+          box_id?: string | null;
         };
         Update: {
           id?: string;
@@ -161,6 +171,7 @@ export type Database = {
           notes?: string | null;
           received_by?: string;
           received_at?: string;
+          box_id?: string | null;
         };
         Relationships: [];
       };
@@ -698,9 +709,145 @@ export type Database = {
         };
         Relationships: [];
       };
+      racks: {
+        Row: {
+          id: string;
+          code: string;
+          name: string | null;
+          created_by: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          code: string;
+          name?: string | null;
+          created_by?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          code?: string;
+          name?: string | null;
+          created_by?: string | null;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      boxes: {
+        Row: {
+          id: string;
+          rack_id: string;
+          code: string;
+          name: string | null;
+          created_by: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          rack_id: string;
+          code: string;
+          name?: string | null;
+          created_by?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          rack_id?: string;
+          code?: string;
+          name?: string | null;
+          created_by?: string | null;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      part_locations: {
+        Row: {
+          id: string;
+          part_id: string;
+          box_id: string;
+          qty: number;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          part_id: string;
+          box_id: string;
+          qty?: number;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          part_id?: string;
+          box_id?: string;
+          qty?: number;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      stock_out_events: {
+        Row: {
+          id: string;
+          request_id: string;
+          part_id: string;
+          box_id: string | null;
+          qty: number;
+          reason: string;
+          notes: string | null;
+          issued_by: string;
+          issued_at: string;
+        };
+        Insert: {
+          id?: string;
+          request_id: string;
+          part_id: string;
+          box_id?: string | null;
+          qty: number;
+          reason: string;
+          notes?: string | null;
+          issued_by: string;
+          issued_at?: string;
+        };
+        Update: {
+          id?: string;
+          request_id?: string;
+          part_id?: string;
+          box_id?: string | null;
+          qty?: number;
+          reason?: string;
+          notes?: string | null;
+          issued_by?: string;
+          issued_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
-    Functions: Record<string, never>;
+    Functions: {
+      search_inventory: {
+        Args: {
+          p_query: string;
+          p_limit?: number;
+          p_offset?: number;
+        };
+        Returns: {
+          part_id: string;
+          part_name: string;
+          mpn: string | null;
+          description: string | null;
+          unit_cost: number;
+          qty_available: number;
+          location_id: string | null;
+          box_id: string | null;
+          box_code: string | null;
+          box_name: string | null;
+          rack_id: string | null;
+          rack_code: string | null;
+          rack_name: string | null;
+          qty_in_box: number | null;
+          total_count: number;
+        }[];
+      };
+    };
     Enums: {
       user_role: UserRole;
       pr_status: PrStatus;

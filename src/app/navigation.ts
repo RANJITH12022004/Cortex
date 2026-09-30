@@ -29,8 +29,13 @@ const PROCUREMENT_NAV: NavItem[] = [
   { to: '/tasks', label: 'Employee handover' },
 ];
 
+const INVENTORY_NAV: NavItem[] = [
+  { to: '/inventory', label: 'Inventory' },
+  { to: '/products', label: 'Products' },
+];
+
 export function isAdminRole(role: UserRole): boolean {
-  return role === 'admin';
+  return role === 'admin' || role === 'super_admin';
 }
 
 export function canAccessRoles(userRole: UserRole, allowedRoles: UserRole[]): boolean {
@@ -48,11 +53,17 @@ export function getSidebarNavItems(role: UserRole): NavItem[] {
   if (role === 'procurement') {
     return PROCUREMENT_NAV;
   }
+  if (role === 'inventory' || role === 'user') {
+    return INVENTORY_NAV;
+  }
   return [];
 }
 
 export function getWorkspaceLabel(role: UserRole): string {
+  if (role === 'super_admin') return 'Super admin';
   if (isAdminRole(role)) return 'Admin';
+  if (role === 'inventory') return 'Inventory';
+  if (role === 'user') return 'User';
   if (role === 'senior_manager') return 'Senior manager';
   if (role === 'manager') return 'Manager';
   if (role === 'procurement') return 'Procurement';

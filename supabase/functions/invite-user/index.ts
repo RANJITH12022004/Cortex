@@ -9,12 +9,46 @@ const corsHeaders = {
 
 const inviteSchema = z.object({
   email: z.string().email(),
-  role: z.enum(['manager', 'senior_manager', 'employee', 'procurement']),
+  role: z.enum([
+    'super_admin',
+    'admin',
+    'manager',
+    'senior_manager',
+    'inventory',
+    'user',
+    'procurement',
+    'employee',
+  ]),
 });
 
-type UserRole = 'admin' | 'manager' | 'senior_manager' | 'procurement' | 'employee';
+type UserRole =
+  | 'super_admin'
+  | 'admin'
+  | 'manager'
+  | 'senior_manager'
+  | 'inventory'
+  | 'user'
+  | 'procurement'
+  | 'employee';
 
-const ADMIN_INVITABLE_ROLES: UserRole[] = ['manager', 'senior_manager', 'procurement', 'employee'];
+const SUPER_ADMIN_INVITABLE_ROLES: UserRole[] = [
+  'super_admin',
+  'admin',
+  'manager',
+  'senior_manager',
+  'inventory',
+  'user',
+  'procurement',
+  'employee',
+];
+const ADMIN_INVITABLE_ROLES: UserRole[] = [
+  'manager',
+  'senior_manager',
+  'inventory',
+  'user',
+  'procurement',
+  'employee',
+];
 const MANAGER_INVITABLE_ROLES: UserRole[] = ['employee', 'procurement'];
 
 function jsonResponse(body: unknown, status = 200): Response {
@@ -26,7 +60,7 @@ function jsonResponse(body: unknown, status = 200): Response {
 
 function inviteEmailBody(actionLink: string): string {
   return [
-    'You have been invited to Cortex OS.',
+    'You have been invited to Cortex.',
     '',
     'Accept your invitation and set your password using the link below:',
     actionLink,
@@ -96,6 +130,10 @@ Deno.serve(async (req) => {
 
     const callerRole = callerProfile.role as UserRole;
 
+    if (callerRole === 'super_admin' && !SUPER_ADMIN_INVITABLE_ROLES.includes(role)) {
+      return jsonResponse({ error: 'Super admin cannot invite that role' }, 403);
+    }
+
     if (callerRole === 'admin' && !ADMIN_INVITABLE_ROLES.includes(role)) {
       return jsonResponse({ error: 'Admin cannot invite that role' }, 403);
     }
@@ -106,7 +144,12 @@ Deno.serve(async (req) => {
       }
     }
 
-    if (callerRole !== 'admin' && callerRole !== 'manager' && callerRole !== 'senior_manager') {
+    if (
+      callerRole !== 'super_admin' &&
+      callerRole !== 'admin' &&
+      callerRole !== 'manager' &&
+      callerRole !== 'senior_manager'
+    ) {
       return jsonResponse({ error: 'Insufficient permissions to invite users' }, 403);
     }
 
@@ -145,7 +188,7 @@ Deno.serve(async (req) => {
     try {
       await sendZohoEmail(
         normalizedEmail,
-        "You've been invited to Cortex OS",
+        "You've been invited to Cortex",
         inviteEmailBody(actionLink),
       );
     } catch (smtpError) {

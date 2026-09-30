@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useMemo, useState } from 'react';
 import { WorkspaceLayout } from '@/app/WorkspaceLayout';
 import { DenseTable, DenseTableCell, DenseTableRow } from '@/features/products/components/DenseTable';
 import { listParts, listVendors } from '@/features/vendors/api';
+import { listBoxes, type BoxWithRack } from '@/features/vendors/locationApi';
 import type { PartWithVendor, Vendor } from '@/features/vendors/types';
 import {
   friendlyProcurementError,
@@ -25,6 +26,7 @@ import type {
 
 export function ProcurementFeaturePage() {
   const [parts, setParts] = useState<PartWithVendor[]>([]);
+  const [boxes, setBoxes] = useState<BoxWithRack[]>([]);
   const [vendors, setVendors] = useState<Vendor[]>([]);
   const [events, setEvents] = useState<StockInEventWithRelations[]>([]);
   const [holdRequests, setHoldRequests] = useState<PurchaseRequestListItem[]>([]);
@@ -41,6 +43,7 @@ export function ProcurementFeaturePage() {
   const [issuingDamageId, setIssuingDamageId] = useState<string | null>(null);
   const [stockForm, setStockForm] = useState({
     part_id: '',
+    box_id: '',
     vendor_id: '',
     qty: '',
     unit_cost: '',
@@ -56,9 +59,10 @@ export function ProcurementFeaturePage() {
     setLoading(true);
     setError(null);
     try {
-      const [nextParts, nextVendors, nextEvents, requests, nextSerials, nextDamage] =
+      const [nextParts, nextBoxes, nextVendors, nextEvents, requests, nextSerials, nextDamage] =
         await Promise.all([
           listParts(),
+          listBoxes(''),
           listVendors(),
           listStockInEvents(),
           listPurchaseRequests(),
@@ -67,6 +71,7 @@ export function ProcurementFeaturePage() {
         ]);
 
       setParts(nextParts);
+      setBoxes(nextBoxes);
       setVendors(nextVendors);
       setEvents(nextEvents);
       setHoldRequests(requests.filter((request) => request.status === 'procurement_hold'));
@@ -75,6 +80,7 @@ export function ProcurementFeaturePage() {
       setStockForm((current) => ({
         ...current,
         part_id: current.part_id || nextParts[0]?.id || '',
+        box_id: current.box_id || nextBoxes[0]?.id || '',
       }));
     } catch (err) {
       setError(friendlyProcurementError(err, 'Failed to load procurement data'));
@@ -114,6 +120,7 @@ export function ProcurementFeaturePage() {
 
     const parsed = stockInSchema.safeParse({
       part_id: stockForm.part_id,
+      box_id: stockForm.box_id,
       vendor_id: stockForm.vendor_id,
       qty: stockForm.qty,
       unit_cost: stockForm.unit_cost,
@@ -202,6 +209,27 @@ export function ProcurementFeaturePage() {
                       </option>
                     ))}
                   </select>
+                </div>
+                <div>
+                  <label className="cortex-label mb-2 block">Box</label>
+                  <select
+                    value={stockForm.box_id}
+                    onChange={(e) => setStockForm((current) => ({ ...current, box_id: e.target.value }))}
+                    className="cortex-input"
+                    required
+                  >
+                    <option value="">Select a box</option>
+                    {boxes.map((box) => (
+                      <option key={box.id} value={box.id}>
+                        {box.racks?.code ?? 'Rack'} / {box.code}
+                      </option>
+                    ))}
+                  </select>
+                  {boxes.length === 0 && (
+                    <p className="mt-1 text-body-sm text-on-surface-variant">
+                      Create a rack and box in Inventory before receiving stock.
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label className="cortex-label mb-2 block">Vendor</label>

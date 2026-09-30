@@ -85,7 +85,7 @@ Use your client's Zoho mailbox (not Supabase's default mailer):
 | Username | Full mailbox address |
 | Password | App-specific password |
 | Sender email | Same mailbox |
-| Sender name | e.g. `FacMan` |
+| Sender name | e.g. `Cortex` |
 
 Send a test email from the dashboard to confirm delivery before inviting users.
 

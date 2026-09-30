@@ -10,6 +10,7 @@ const corsHeaders = {
 const payloadSchema = z.object({
   requestId: z.string().min(1),
   partId: z.string().uuid(),
+  boxId: z.string().uuid(),
   qty: z.number().positive(),
   reason: z.string().min(1).max(200),
   notes: z.string().trim().nullable().optional(),
@@ -74,7 +75,7 @@ Deno.serve(async (req) => {
       .eq('id', user.id)
       .single();
 
-    const allowedRoles = ['procurement', 'admin', 'manager', 'senior_manager'];
+    const allowedRoles = ['procurement', 'admin', 'super_admin', 'inventory'];
     if (
       profileError ||
       !callerProfile?.active ||
@@ -86,6 +87,7 @@ Deno.serve(async (req) => {
     const { data, error } = await adminClient.rpc('record_stock_out_event', {
       p_request_id: parsed.data.requestId,
       p_part_id: parsed.data.partId,
+      p_box_id: parsed.data.boxId,
       p_qty: parsed.data.qty,
       p_reason: parsed.data.reason,
       p_notes: parsed.data.notes ?? null,

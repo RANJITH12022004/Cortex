@@ -12,7 +12,7 @@ function isStandaloneMode() {
 
 export function InstallPrompt() {
   const [deferred, setDeferred] = useState<BeforeInstallPromptEvent | null>(null);
-  const [dismissed, setDismissed] = useState(() => localStorage.getItem('facman-install-dismissed') === '1');
+  const [dismissed, setDismissed] = useState(() => localStorage.getItem('cortex-install-dismissed') === '1');
   const [pushStatus, setPushStatus] = useState<string | null>(null);
 
   useEffect(() => {
@@ -42,12 +42,12 @@ export function InstallPrompt() {
     }
     setDeferred(null);
     setDismissed(true);
-    localStorage.setItem('facman-install-dismissed', '1');
+    localStorage.setItem('cortex-install-dismissed', '1');
   }
 
   return (
     <div className="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-lg rounded border border-outline bg-surface-container-high p-4 shadow-lg md:left-auto">
-      <p className="font-headline text-headline-sm text-on-surface">Install FacMan</p>
+      <p className="font-headline text-headline-sm text-on-surface">Install Cortex</p>
       <p className="mt-1 text-body-sm text-on-surface-variant">
         Add to your home screen for faster access and real-time task alerts.
       </p>
@@ -61,7 +61,7 @@ export function InstallPrompt() {
           className="cortex-btn-secondary"
           onClick={() => {
             setDismissed(true);
-            localStorage.setItem('facman-install-dismissed', '1');
+            localStorage.setItem('cortex-install-dismissed', '1');
           }}
         >
           Not now
@@ -72,7 +72,7 @@ export function InstallPrompt() {
 }
 
 export function PushEnableBanner() {
-  const [hidden, setHidden] = useState(() => localStorage.getItem('facman-push-dismissed') === '1');
+  const [hidden, setHidden] = useState(() => localStorage.getItem('cortex-push-dismissed') === '1');
   const [message, setMessage] = useState<string | null>(null);
 
   if (hidden || !import.meta.env.VITE_VAPID_PUBLIC_KEY || Notification.permission === 'granted') return null;
@@ -83,7 +83,7 @@ export function PushEnableBanner() {
       if (result.ok) {
         setMessage('Notifications enabled');
         setHidden(true);
-        localStorage.setItem('facman-push-dismissed', '1');
+        localStorage.setItem('cortex-push-dismissed', '1');
       } else if (result.reason === 'denied') {
         setMessage('Notification permission denied in browser settings');
       } else {

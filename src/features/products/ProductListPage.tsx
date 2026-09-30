@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ManagerLayout } from '@/app/ManagerLayout';
+import { useAuth } from '@/features/auth/AuthProvider';
+import { canManageProducts } from '@/features/auth/roleRoutes';
 import { listProducts, updateProduct } from './api';
 import type { ProductListItem } from './types';
 import { DenseTable, DenseTableCell, DenseTableRow } from './components/DenseTable';
 
 export function ProductListPage() {
+  const { profile } = useAuth();
+  const canManage = profile ? canManageProducts(profile.role) : false;
   const [products, setProducts] = useState<ProductListItem[]>([]);
   const [includeArchived, setIncludeArchived] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -49,12 +53,14 @@ export function ProductListPage() {
           />
           Show archived
         </label>
-        <Link
-          to="/products/new"
-          className="inline-flex h-row-height-standard items-center rounded bg-primary-container px-4 font-headline text-label-caps uppercase text-on-primary hover:bg-primary"
-        >
-          New product
-        </Link>
+        {canManage && (
+          <Link
+            to="/products/new"
+            className="inline-flex h-row-height-standard items-center rounded bg-primary-container px-4 font-headline text-label-caps uppercase text-on-primary hover:bg-primary"
+          >
+            New product
+          </Link>
+        )}
       </div>
 
       {actionError && (
@@ -86,12 +92,16 @@ export function ProductListPage() {
             <DenseTableRow key={product.id}>
               <DenseTableCell>
                 <div>
-                  <Link
-                    to={`/products/${product.id}`}
-                    className="font-semibold text-primary-container hover:underline"
-                  >
-                    {product.name}
-                  </Link>
+                  {canManage ? (
+                    <Link
+                      to={`/products/${product.id}`}
+                      className="font-semibold text-primary-container hover:underline"
+                    >
+                      {product.name}
+                    </Link>
+                  ) : (
+                    <span className="font-semibold text-on-surface">{product.name}</span>
+                  )}
                   {product.description && (
                     <p className="mt-0.5 text-body-sm text-on-surface-variant line-clamp-1">
                       {product.description}
@@ -114,21 +124,25 @@ export function ProductListPage() {
                 </span>
               </DenseTableCell>
               <DenseTableCell>
-                <div className="flex gap-2">
-                  <Link
-                    to={`/products/${product.id}`}
-                    className="text-primary-container hover:underline"
-                  >
-                    Setup
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={() => void toggleArchive(product)}
-                    className="text-on-surface-variant hover:text-primary-container"
-                  >
-                    {product.archived ? 'Restore' : 'Archive'}
-                  </button>
-                </div>
+                {canManage ? (
+                  <div className="flex gap-2">
+                    <Link
+                      to={`/products/${product.id}`}
+                      className="text-primary-container hover:underline"
+                    >
+                      Setup
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => void toggleArchive(product)}
+                      className="text-on-surface-variant hover:text-primary-container"
+                    >
+                      {product.archived ? 'Restore' : 'Archive'}
+                    </button>
+                  </div>
+                ) : (
+                  <span className="text-on-surface-variant">View only</span>
+                )}
               </DenseTableCell>
             </DenseTableRow>
           ))}

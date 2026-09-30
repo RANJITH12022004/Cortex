@@ -166,6 +166,7 @@ export async function listStockOutEvents(): Promise<StockOutEventRow[]> {
 
 export async function recordStockOut(values: {
   part_id: string;
+  box_id: string;
   qty: number;
   reason: string;
   notes?: string | null;
@@ -174,6 +175,7 @@ export async function recordStockOut(values: {
     body: {
       requestId: crypto.randomUUID(),
       partId: values.part_id,
+      boxId: values.box_id,
       qty: values.qty,
       reason: values.reason,
       notes: values.notes ?? null,

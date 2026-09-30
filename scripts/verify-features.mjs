@@ -1,5 +1,5 @@
 /**
- * Automated verification for FacMan features (no Supabase credentials required).
+ * Automated verification for Cortex features (no Supabase credentials required).
  * Run: node scripts/verify-features.mjs
  */
 import { readFileSync, existsSync } from 'node:fs';

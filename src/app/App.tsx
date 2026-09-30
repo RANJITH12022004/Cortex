@@ -101,9 +101,11 @@ export function App() {
           <Route
             path="/products"
             element={
-              <ManagerRoute>
-                <ProductListPage />
-              </ManagerRoute>
+              <RequireAuth>
+                <RequireRole allowedRoles={['manager', 'senior_manager', 'inventory', 'user']}>
+                  <ProductListPage />
+                </RequireRole>
+              </RequireAuth>
             }
           />
           <Route
@@ -158,7 +160,9 @@ export function App() {
             path="/inventory"
             element={
               <RequireAuth>
-                <RequireRole allowedRoles={['manager', 'senior_manager', 'procurement']}>
+                <RequireRole
+                  allowedRoles={['manager', 'senior_manager', 'procurement', 'inventory', 'user']}
+                >
                   <InventoryPage />
                 </RequireRole>
               </RequireAuth>

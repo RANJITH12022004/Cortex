@@ -1,6 +1,6 @@
 self.addEventListener('push', (event) => {
   const payload = event.data?.json?.() ?? {};
-  const title = payload.title ?? 'FacMan';
+  const title = payload.title ?? 'Cortex';
   const options = {
     body: payload.body ?? '',
     data: { url: payload.url ?? '/' },

@@ -1,4 +1,4 @@
--- FacMan initial schema (PRD section 4)
+-- Cortex initial schema (PRD section 4)
 
 -- Enums
 CREATE TYPE public.user_role AS ENUM ('admin', 'manager', 'procurement', 'employee');

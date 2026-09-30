@@ -28,3 +28,7 @@ dist-ssr
 
 
 #smpt 
+
+.vercel
+.env*
+!.env.example

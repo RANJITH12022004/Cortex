@@ -1,19 +1,42 @@
 import { FormEvent, useState } from 'react';
 import { ManagerLayout } from '@/app/ManagerLayout';
 import { ROLE_LABELS } from '@/features/auth/roleRoutes';
+import { useAuth } from './AuthProvider';
 import { inviteUser } from './inviteApi';
-import { adminInviteSchema, type AdminInviteFormValues } from './schemas';
+import {
+  adminInviteSchema,
+  superAdminInviteSchema,
+  type AdminInviteFormValues,
+  type SuperAdminInviteFormValues,
+} from './schemas';
+import type { UserRole } from '@/types/database';
 
 const ADMIN_INVITE_ROLES: AdminInviteFormValues['role'][] = [
   'manager',
   'senior_manager',
+  'inventory',
+  'user',
+  'procurement',
+  'employee',
+];
+
+const SUPER_ADMIN_INVITE_ROLES: SuperAdminInviteFormValues['role'][] = [
+  'super_admin',
+  'admin',
+  'manager',
+  'senior_manager',
+  'inventory',
+  'user',
   'procurement',
   'employee',
 ];
 
 export function AdminInvitePage() {
+  const { profile } = useAuth();
+  const inviteRoles: UserRole[] =
+    profile?.role === 'super_admin' ? SUPER_ADMIN_INVITE_ROLES : ADMIN_INVITE_ROLES;
   const [email, setEmail] = useState('');
-  const [role, setRole] = useState<AdminInviteFormValues['role']>('manager');
+  const [role, setRole] = useState<UserRole>('manager');
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -23,7 +46,10 @@ export function AdminInvitePage() {
     setMessage(null);
     setError(null);
 
-    const parsed = adminInviteSchema.safeParse({ email, role });
+    const parsed = (profile?.role === 'super_admin' ? superAdminInviteSchema : adminInviteSchema).safeParse({
+      email,
+      role,
+    });
     if (!parsed.success) {
       setError(parsed.error.errors[0]?.message ?? 'Invalid input');
       return;
@@ -68,10 +94,10 @@ export function AdminInvitePage() {
             <select
               id="role"
               value={role}
-              onChange={(e) => setRole(e.target.value as AdminInviteFormValues['role'])}
+              onChange={(e) => setRole(e.target.value as UserRole)}
               className="cortex-input"
             >
-              {ADMIN_INVITE_ROLES.map((value) => (
+              {inviteRoles.map((value) => (
                 <option key={value} value={value}>
                   {ROLE_LABELS[value]}
                 </option>

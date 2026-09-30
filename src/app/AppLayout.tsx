@@ -22,7 +22,7 @@ export function AppLayout({ title, children }: AppLayoutProps) {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-container-padding py-4">
           <div className="flex items-center gap-4">
             <Link to="/" className="font-headline text-headline-sm uppercase tracking-wide text-primary-container">
-              Cortex OS
+              Cortex
             </Link>
             <span className="hidden h-4 w-px bg-border sm:block" />
             <h1 className="font-headline text-headline-sm text-on-surface">{title}</h1>

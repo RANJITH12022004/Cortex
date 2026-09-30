@@ -1,7 +1,7 @@
 import { supabase } from '@/lib/supabase';
-import type { InviteFormValues } from './schemas';
+import type { UserRole } from '@/types/database';
 
-export async function inviteUser(input: InviteFormValues) {
+export async function inviteUser(input: { email: string; role: UserRole }) {
   const { data: sessionData } = await supabase.auth.getSession();
   const accessToken = sessionData.session?.access_token;
 

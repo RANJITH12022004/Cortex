@@ -18,6 +18,7 @@ export const partShortfallSchema = z.object({
 
 export const stockInSchema = z.object({
   part_id: z.string().uuid('Select a part'),
+  box_id: z.string().uuid('Select a box'),
   vendor_id: z.string().uuid().nullable().optional().or(z.literal('')),
   qty: z.coerce.number().positive('Quantity must be greater than 0'),
   unit_cost: z.coerce.number().min(0, 'Unit cost must be 0 or greater'),

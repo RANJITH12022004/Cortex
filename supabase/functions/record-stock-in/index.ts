@@ -10,6 +10,7 @@ const corsHeaders = {
 const payloadSchema = z.object({
   requestId: z.string().min(1),
   partId: z.string().uuid(),
+  boxId: z.string().uuid(),
   vendorId: z.string().uuid().nullable().optional(),
   qty: z.number().positive(),
   unitCost: z.number().min(0),
@@ -78,7 +79,7 @@ Deno.serve(async (req) => {
     if (
       profileError ||
       !callerProfile?.active ||
-      !['procurement', 'admin', 'manager', 'senior_manager'].includes(callerProfile.role)
+      !['procurement', 'admin', 'super_admin', 'inventory'].includes(callerProfile.role)
     ) {
       return jsonResponse({ error: 'Not allowed to record stock in' }, 403);
     }
@@ -86,6 +87,7 @@ Deno.serve(async (req) => {
     const { data, error } = await adminClient.rpc('record_stock_in_event', {
       p_request_id: parsed.data.requestId,
       p_part_id: parsed.data.partId,
+      p_box_id: parsed.data.boxId,
       p_vendor_id: parsed.data.vendorId ?? null,
       p_qty: parsed.data.qty,
       p_unit_cost: parsed.data.unitCost,
