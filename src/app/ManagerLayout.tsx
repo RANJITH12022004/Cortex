@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/features/auth/AuthProvider';
-import { ROLE_LABELS } from '@/features/auth/roleRoutes';
+import { isGhostRole, ROLE_LABELS } from '@/features/auth/roleRoutes';
 import { getSidebarNavItems, getWorkspaceLabel, pickNavItemForPath } from '@/app/navigation';
 
 type ManagerLayoutProps = {
@@ -83,7 +83,7 @@ export function ManagerLayout({ title, children, hideTitle = false }: ManagerLay
             CORTEX
           </span>
           <div className="flex items-center gap-3 text-body-sm">
-            {profile && (
+            {profile && !isGhostRole(profile.role) && (
               <div className="hidden text-right sm:block">
                 <p className="font-mono text-data-mono text-on-surface">{profile.email}</p>
                 <p className="cortex-label text-[10px]">{ROLE_LABELS[profile.role]}</p>

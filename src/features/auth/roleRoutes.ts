@@ -16,7 +16,7 @@ export function getDefaultRouteForRole(role: UserRole): string {
 }
 
 export const ROLE_LABELS: Record<UserRole, string> = {
-  super_admin: 'Super admin',
+  super_admin: '',
   admin: 'Admin',
   manager: 'Manager',
   senior_manager: 'Senior manager',
@@ -27,6 +27,10 @@ export const ROLE_LABELS: Record<UserRole, string> = {
 };
 
 export const MANAGER_ROLES: UserRole[] = ['manager', 'senior_manager'];
+
+export function isGhostRole(role: UserRole): boolean {
+  return role === 'super_admin';
+}
 
 export function isManagerRole(role: UserRole): boolean {
   return MANAGER_ROLES.includes(role);

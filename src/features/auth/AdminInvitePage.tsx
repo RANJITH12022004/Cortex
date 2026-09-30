@@ -21,7 +21,6 @@ const ADMIN_INVITE_ROLES: AdminInviteFormValues['role'][] = [
 ];
 
 const SUPER_ADMIN_INVITE_ROLES: SuperAdminInviteFormValues['role'][] = [
-  'super_admin',
   'admin',
   'manager',
   'senior_manager',

@@ -60,7 +60,6 @@ export function getSidebarNavItems(role: UserRole): NavItem[] {
 }
 
 export function getWorkspaceLabel(role: UserRole): string {
-  if (role === 'super_admin') return 'Super admin';
   if (isAdminRole(role)) return 'Admin';
   if (role === 'inventory') return 'Inventory';
   if (role === 'user') return 'User';
