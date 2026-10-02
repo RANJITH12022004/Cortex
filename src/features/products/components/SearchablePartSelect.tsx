@@ -116,7 +116,7 @@ export function SearchablePartSelect({
                 }`}
               >
                 <span className="block">{part.name}</span>
-                <span className="mt-0.5 block font-mono text-[11px] text-on-surface-variant">
+                <span className="mt-0.5 block font-mono text-body-sm text-on-surface-variant">
                   {[part.mpn, part.storage_location ? `Bin ${part.storage_location}` : null, `${part.qty_available} on hand`]
                     .filter(Boolean)
                     .join(' · ')}

@@ -36,10 +36,12 @@ export function ProductBomPage() {
         setName(bundle.product.name);
         setDescription(bundle.product.description ?? '');
         setBom(
-          bundle.bom.map((row) => ({
-            part_id: row.part_id,
-            qty_required: row.qty_required,
-          })),
+          bundle.bom
+            .filter((row) => row.part_id)
+            .map((row) => ({
+              part_id: row.part_id,
+              qty_required: row.qty_required,
+            })),
         );
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load BOM');

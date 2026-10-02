@@ -50,16 +50,11 @@ export function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#F7F8FA] p-4">
+    <div className="flex min-h-screen items-center justify-center bg-[#f4f5f7] p-4">
       <div className="cortex-card w-full max-w-md">
         <div className="flex flex-col items-center p-8">
-          <div className="mb-8 text-center">
-            <p className="font-headline text-headline-lg uppercase tracking-wide text-primary-container">
-              Cortex
-            </p>
-            <p className="mt-1 font-mono text-data-mono text-on-surface-variant">
-              Production & Warehouse Management
-            </p>
+          <div className="mb-8 flex justify-center">
+            <img src="/logo-lockup.png?v=3" alt="Cortex — Production & Warehouse System" className="h-28 w-auto" />
           </div>
 
           {!loading && session && !role && (

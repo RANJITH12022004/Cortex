@@ -17,7 +17,7 @@ export function AppLayout({ title, children }: AppLayoutProps) {
   }
 
   return (
-    <div className="min-h-screen bg-[#F7F8FA]">
+    <div className="min-h-screen bg-[#f4f5f7]">
       <header className="border-b border-border bg-surface-container-low">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-container-padding py-4">
           <div className="flex items-center gap-4">
@@ -41,7 +41,7 @@ export function AppLayout({ title, children }: AppLayoutProps) {
                 {!isGhostRole(profile.role) && (
                   <>
                     <p className="font-mono text-data-mono text-on-surface">{profile.email}</p>
-                    <p className="cortex-label text-[10px]">{ROLE_LABELS[profile.role]}</p>
+                    <p className="cortex-label">{ROLE_LABELS[profile.role]}</p>
                   </>
                 )}
               </div>

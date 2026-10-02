@@ -13,12 +13,12 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icons/icon-192.png', 'icons/icon-512.png'],
+      includeAssets: ['favicon.svg', 'favicon-32.png', 'logo.svg', 'icons/icon-192.png', 'icons/icon-512.png'],
       manifest: {
         name: 'Cortex',
         short_name: 'Cortex',
         description: 'Production and warehouse management',
-        theme_color: '#2c4a6e',
+        theme_color: '#0B6FE0',
         background_color: '#ffffff',
         display: 'standalone',
         start_url: '/',

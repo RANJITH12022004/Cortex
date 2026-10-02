@@ -13,7 +13,7 @@ export function DenseTable({ headers, children, footer }: DenseTableProps) {
         </div>
       )}
       <div className="overflow-x-auto">
-        <table className="w-full border-collapse">
+        <table className="w-full border-collapse text-body-md">
           <thead>
             <tr className="bg-surface-container-high">
               {headers.map((header) => (
